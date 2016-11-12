@@ -18,7 +18,7 @@ public class Armour
     public static final int GOLD_HITPOINTS = 20;
     public static final int GOLD_DAMAGE_BLOCKED = 10;
 
-    // instance variables
+    /* instance fields */
     private String name;
     private int hitpoints;
     private int damageBlocked;
@@ -30,33 +30,33 @@ public class Armour
      */
     public Armour(String type)
     {
-        if (type.equals("leather"))
-        {
-            name = "leather armour";
-            hitpoints = LEATHER_HITPOINTS;
-            damageBlocked = LEATHER_DAMGAGE_BLOCKED;
-        } // end of if(type.equals("leather"))
+        if (type == null) return;
 
-        else if (type.equals("iron"))
-        {
-            name = "iron armour";
-            hitpoints = IRON_HITPOINTS;
-            damageBlocked = IRON_DAMAGE_BLOCKED;
-        } // end of else if (type.equals("iron"))
+        name = type + " armour";
 
-        else if (type.equals("gold"))
+        switch (type)
         {
-            name = "gold armour";
-            hitpoints = GOLD_HITPOINTS;
-            damageBlocked = GOLD_DAMAGE_BLOCKED;
-        } // end of else if (type.equals("gold"))
+            case "leather":
+                hitpoints = LEATHER_HITPOINTS;
+                damageBlocked = LEATHER_DAMGAGE_BLOCKED;
+                break;
 
-        else
-        {
-            name = "clothes";
-            hitpoints = 0;
-            damageBlocked = 0;
-        } // end of else {...}
+            case "iron":
+                hitpoints = IRON_HITPOINTS;
+                damageBlocked = IRON_DAMAGE_BLOCKED;
+                break;
+
+            case "gold":
+                hitpoints = GOLD_HITPOINTS;
+                damageBlocked = GOLD_DAMAGE_BLOCKED;
+                break;
+            
+            default:
+                name = "clothes";
+                hitpoints = 0;
+                damageBlocked = 0;
+                break;
+        } // end of switch (type)
     } // end of constructor Armour()
 
     /**
@@ -104,16 +104,16 @@ public class Armour
      */
     public void useArmour()
     {
-        hitpoints -= 1;
+        hitpoints--;
     } // end of method useArmour()
 
     /**
      * Adds hitpoints to armour, repairing the armour.
      * 
-     * @param hitpoints how many hitpoints the armour will be repaired by
+     * @param hitpointsToRepair how many hitpoints the armour will be repaired by
      */
-    public void repairArmour(int hitpoints)
+    public void repairArmour(int hitpointsToRepair)
     {
-        this.hitpoints += hitpoints;
+        hitpoints = hitpoints + hitpointsToRepair;
     } // end of method repairArmour(int hitpoints)
 } // end of class Armour
