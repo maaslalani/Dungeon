@@ -25,7 +25,7 @@ public class State
      */
     public static void saveState(Player player)
     {
-        /* Check if the user has a name, if not get the name */
+        /* Check if the user does not have a name, if so get the name */
         if (player.getName().equals(""))
         {
             System.out.print("Enter your name: ");
@@ -36,12 +36,18 @@ public class State
         try
         {
             File userData = new File("users/" + player.getName() + ".txt");
+            
+            /* Create the parent directories if they do not exist. */
+            userData.getParentFile().mkdirs();
+            
             PrintWriter writer = new PrintWriter(userData);
 
             /* Save player data to file. */
             writer.println(player.getData());
 
             writer.close();
+            
+            System.out.println("Your data was saved. You may now safely close the console.");
         }
         catch (FileNotFoundException exception)
         {
