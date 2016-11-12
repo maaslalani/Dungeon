@@ -1,4 +1,5 @@
 import java.util.Random;
+
 /**
  * The antagonist whom you must defeat.
  * 
@@ -7,27 +8,36 @@ import java.util.Random;
  */
 public class Enemy
 {
-    /**
-     * An array of possible enemy types.
-     */
-    public static final String[] enemy = { "Zombie", "Skeleton", "Warrior", "Goblin", "Werewolf", "Vampire", "" };
+    /* class fields */
+    /** An array of possible enemy types. */
+    public static final String[] ENEMY_NAMES = { "Zombie", "Skeleton", "Warrior", "Goblin", "Werewolf", "Vampire" };
 
-    private Random random = new Random();
-    private String name;
+    /** The maximum attack damage of this enemy. */
+    public static final int MAXIMUM_ATTACK_DAMAGE = 20;
+
+    /** The maximum health of this enemy. */
+    public static final int MAXIMUM_HEALTH = 75;
+
+    /** The minimum health of this enemy. */
+    public static final int MINIMUM_HEALTH = 1;
+
+    /** The random number generator of this enemy. */
+    public static final Random RANDOM = new Random();
+
+    /* instance fields */
     private int health;
-    private int attackDamage;
+    private String name;
 
     /**
      * Constructs a new enemy.
      */
     public Enemy()
     {
-        name = enemy[random.nextInt(enemy.length)];
-        health = random.nextInt(76);
-        while (health == 0) {
-            health = random.nextInt(76);
-        }
-        attackDamage = 20;
+        /* Fetch a random name from the list of enemies. */
+        name = ENEMY_NAMES[RANDOM.nextInt(ENEMY_NAMES.length)];
+
+        /* Give the enemy a random health */
+        health = RANDOM.nextInt(MAXIMUM_HEALTH);
     } // end of constructor Enemy()
 
     /**
@@ -37,7 +47,7 @@ public class Enemy
      */
     public int attack()
     {
-        return random.nextInt(attackDamage);
+        return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
     } // end of method attack()
 
     /**
@@ -47,7 +57,7 @@ public class Enemy
      */
     public void takeDamage(int damage)
     {
-        health -= damage;
+        health = health - damage;
     } // end of method damageDealt(int damage)
 
     /**

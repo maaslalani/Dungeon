@@ -6,21 +6,67 @@
  */
 public class Sword
 {
-    // instance variables
-    private String name;
-    private int hitpoints;
+    /* class fields */
+    /** The hitpoints of a wood sword. */
+    public static final int WOOD_HITPOINTS = 10;
+
+    /** The damage increase of a wood sword. */
+    public static final int WOOD_DAMAGE_INCREASE = 5;
+
+    /** The hitpoints of a metal sword. */
+    public static final int METAL_HITPOINTS = 15;
+
+    /** The damage increase of a metal sword. */
+    public static final int METAL_DAMAGE_INCREASE = 10;
+
+    /** The hitpoints of a gold sword. */
+    public static final int GOLD_HITPOINTS = 20;
+
+    /** The damage increase of a gold sword. */
+    public static final int GOLD_DAMAGE_INCREASE = 15;
+
+    
+    /* instance fields */
     private int damageIncrease;
-    
+    private int hitpoints;
+    private String name;
+
     /**
-     * Constructs a Sword
+     * Constructs a sword with the specified characteristics.
+     * 
+     * @param type the type of this sword
      */
-    public Sword(String name, int hitpoints, int damageIncrease)
-    {
-        this.name = name;
-        this.hitpoints = hitpoints;
-        this.damageIncrease = damageIncrease;
-    } // end of constructor Sword(String name, int hitpoints, int damageIncrease)
-    
+    public Sword(String type)
+    {        
+        if (type == null) return;
+
+        name = type + " armour";
+
+        switch (type)
+        {
+            case "wood":
+            hitpoints = WOOD_HITPOINTS;
+            damageIncrease = WOOD_DAMAGE_INCREASE;
+            break;
+
+            case "metal":
+            hitpoints = METAL_HITPOINTS;
+            damageIncrease = METAL_DAMAGE_INCREASE;
+            break;
+
+            case "gold":
+            hitpoints = GOLD_HITPOINTS;
+            damageIncrease = GOLD_DAMAGE_INCREASE;
+            break;
+
+            default:
+            name = "balloon sword";
+            hitpoints = 0;
+            damageIncrease = 0;
+            break;
+        } // end of switch (type)
+    } // end of constructor Sword(String  type)
+
     /**
      * Returns the name of this sword. 
      * 
@@ -30,7 +76,7 @@ public class Sword
     {
         return name;
     } // end of method name()
-    
+
     /**
      * Returns the hitpoints of this sword.
      * 
@@ -40,7 +86,7 @@ public class Sword
     {
         return hitpoints;
     } // end of method hitpoints()
-    
+
     /**
      * Returns the damageIncrease of this sword.
      * 
@@ -50,7 +96,7 @@ public class Sword
     {
         return damageIncrease;
     } // end of method damageIncrease()
-    
+
     /**
      * Changes the name of this sword to the specified name.
      * 
@@ -60,22 +106,22 @@ public class Sword
     {
         this.name = name;
     } // end of method setName(String name)
-    
+
     /**
      * Uses this sword when attacking an enemy, reduces hitpoints.
      */
     public void useSword()
     {
-        hitpoints -= 1;
+        hitpoints--;
     } // end of method useSword()
-    
+
     /**
      * Adds hitpoints to sword, repairing the sword.
      * 
-     * @param hitpoints how many hitpoints the sword will be repaired by
+     * @param hitpointsToRepair how many hitpoints the sword will be repaired by
      */
-    public void repairSword(int hitpoints)
+    public void repairSword(int hitpointsToRepair)
     {
-        this.hitpoints += hitpoints;
+        hitpoints = hitpoints + hitpointsToRepair;
     } // end of method repairSword(int hitpoints)
 } // end of class Sword

@@ -1,4 +1,5 @@
 import java.util.Random;
+
 /**
  * The main character in this game.
  * 
@@ -6,132 +7,65 @@ import java.util.Random;
  * @version 1.0 2015-11-17
  */
 public class Player
-{   
-    /**
-     * The delay used for display messages.
-     */
+{
+    /* Class fields */
+
+    /** Default number of potions of this player. */
+    public static final int DEFAULT_NUMBER_OF_POTIONS = 3;
+
+    /** The delay used for display messages to allow for readability. */
     public static final long DELAY = 1000;   
 
-    /**
-     * The amount of HP one potion heals.
-     */
+    /** Random number generator for this player. */
+    public static Random RANDOM = new Random();
+
+    /** The amount of HP one potion heals. */
     public static final int POTION_HEALING = 30;
 
-    /**
-     * Sword of this player.
-     */
-    public Sword sword;
-    /**
-     * Armour of this player.
-     */
-    public Armour armour;
-    private Random random = new Random();
-    private String name;
+    /** Maximum health of this player. */
+    public static final int FULL_HEALTH = 100;
 
+    /** The maximum attack damage of this player. */
+    public static final int MAXIMUM_ATTACK_DAMAGE = 25;
+
+    /** The default name given to a player. */
+    public static final String NO_NAME = "";
+
+    /* instance fields */
+    private Armour armour;
+    private int attackDamage;
+    private int enemiesKilled;
     private boolean hasSword;
     private boolean hasArmour;
-    private int enemiesKilled;
     private int health;
-    private int attackDamage;
-    private int healthPotions;
+    private String name;
+    private int potionsRemaining;
+    private Sword sword;
 
     /**
      * Constructs a new Player.
      */
     public Player()
     {
-        name = "";
+        name = NO_NAME;
         hasSword = false;
-        health = 100;
-        attackDamage = 25;
-        healthPotions = 3;
+        hasArmour = false;
+        health = FULL_HEALTH;
+        potionsRemaining = DEFAULT_NUMBER_OF_POTIONS;
         enemiesKilled = 0;
+        sword = new Sword("balloon");
+        armour = new Armour("clothes");
     } // end of constructor Player()
 
+    /* Accessors */
     /**
-     * Returns damage dealt by this player.
+     * Returns the name of this player.
      * 
-     * @return the damage done by this player
+     * @return the name of this player
      */
-    public int attack() throws InterruptedException
+    public String getName()
     {
-        if (hasSword)
-        {
-            sword.useSword();
-            if (sword.hitpoints() <= 0)
-            {
-                System.out.println("\nYour " + sword.name() + " broke.");
-                Thread.sleep(DELAY);
-                hasSword = false;
-            }
-            return random.nextInt(attackDamage) + sword.damageIncrease();
-        }
-        else 
-        {
-            return random.nextInt(attackDamage);
-        }       
-    } // end of method attack()
-
-    /**
-     * Reduce the HP of this player by a specified amount.
-     * 
-     * @param damage the amount of damage to deal to this player
-     */
-    public void takeDamage(int damage) throws InterruptedException
-    {
-        if (hasArmour)
-        {
-            if (damage > armour.damageBlocked())
-            {
-                health -= (damage - armour.damageBlocked());
-            } // end of if (damage > armour.damageBlock)
-
-            armour.useArmour(); // Decrease hitpoints
-
-            if (armour.hitpoints() <= 0)
-            {
-                hasArmour = false;
-                System.out.println("\nYour " + armour.name() + " broke.");
-                Thread.sleep(DELAY);
-            } // end of if (armour.hitpoints() <= 0)
-        } // end of if (hasArmour)
-        else
-        {
-            // Does not have armour
-            health -= damage;
-        }
-    } // end of method damageDealt(int damage)
-
-    /**
-     * Uses a potion on this player.
-     */
-    public void usePotion()
-    {
-        if (healthPotions > 0)
-        {
-            health += POTION_HEALING; // Use potion
-            healthPotions -= 1; // Remove potion
-        }
-    } // end of method usePotion()
-
-    /**
-     * Increases the amount of potions this player has by a specified amount.
-     * 
-     * @param number the number of potions to add to this player
-     */
-    public void addPotions(int number)
-    {
-        healthPotions += number;
-    } // end of method addPotions(int number)
-
-    /**
-     * Sets the name of this player.
-     * 
-     * @param name the new name of this player
-     */
-    public void setName(String name)
-    {
-        this.name = name;
+        return name;
     } // end of method setName(String name)
 
     /**
@@ -153,24 +87,6 @@ public class Player
     {
         return enemiesKilled;
     } // end of method enemiesKilled()
-    
-    /**
-     * Adds 1 to the kill count of this player.
-     */
-    public void increaseEnemiesKilled()
-    {
-        enemiesKilled += 1;
-    } // end of increaseEnemiesKilled()
-
-    /**
-     * Resets the state of this player.
-     */
-    public void reset()
-    {
-        health = 100;
-        healthPotions = 3;
-        enemiesKilled = 0;
-    } // end of method reset()
 
     /**
      * Returns the number of potions this player has.
@@ -179,8 +95,28 @@ public class Player
      */
     public int getPotions()
     {
-        return healthPotions;
+        return potionsRemaining;
     } // end of method getPotions()
+
+    /**
+     * Returns the sword of this player.
+     * 
+     * @return the sword of this player
+     */
+    public Sword getSword()
+    {
+        return sword;
+    } // end of method getSword()
+
+    /**
+     * Returns the armour of this player.
+     * 
+     * @return the armour of this player
+     */
+    public Armour getArmour()
+    {
+        return armour;
+    } // end of method getSword()
 
     /**
      * Returns whether this player has a sword.
@@ -202,24 +138,185 @@ public class Player
         return hasArmour;
     } // end of method hasArmour()
 
+    /* Mutators */
+    /**
+     * Sets the number of enemies killed by this player. Used for importing saved data.
+     * 
+     * @param enemiesKilled the number of enemies killed by this player
+     */
+    public void setEnemiesKilled(int enemiesKilled)
+    {
+        this.enemiesKilled = enemiesKilled;
+    } // end of method setName(String name)    
+
+    /**
+     * Sets the number of health points of this player.
+     * 
+     * @param healthPoints the number of health points to give this player
+     */
+    public void setHealth(int healthPoints)
+    {
+        if (healthPoints > 0 && healthPoints <= FULL_HEALTH)
+        {
+            health = healthPoints;
+        } // end of if (healthPoints > 0)
+    } // end of method setHealthPoint(int healthPoints)
+
+    /**
+     * Sets the name of this player.
+     * 
+     * @param name the new name of this player
+     */
+    public void setName(String name)
+    {
+        this.name = name;
+    } // end of method setName(String name)   
+
+    /**
+     * Sets the  of this player.
+     * 
+     * @param name the new name of this player
+     */
+    public void setNumberOfPotions(int potions)
+    {
+        if (potions >= 0)
+        {
+            potionsRemaining = potions;
+        } // end of if (potions >= 0)
+    } // end of method setName(String name)    
+
+    /* Utility methods */
+
+    /* Methods that affect the health of this player */
+    /**
+     * Returns damage dealt by this player, accounting for their sword.
+     * 
+     * @return the damage done by this player
+     */
+    public int attack()
+    {
+        if (hasSword)
+        {
+            /* Player has a sword, use it to deal more damage. */
+            sword.useSword();
+
+            /* Check the hitpoint status of the sword. */
+            if (sword.hitpoints() <= 0)
+            {
+                /* Warn the user their sword has broken. */
+                System.out.println("\nYour " + sword.name() + " broke.");
+
+                try
+                {
+                    Thread.sleep(DELAY);
+                }
+                catch (InterruptedException exception)
+                {
+                    System.out.println("The game experienced an interrupted exception.");
+                    System.out.println("The game data could not be saved.");
+                    System.out.println("Please restart the game.");
+                    System.exit(0);
+                } // end of catch (InterruptedException exception)
+                /* The sword is broken, the player no longer has a sword. */
+                hasSword = false;
+            }
+
+            /* Increase the base attack damage by the sword's additional damage. */
+            return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE) + sword.damageIncrease();
+        }
+
+        /* Player does not have a sword, return the base attack damage. */
+        return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
+    } // end of method attack()
+
+    /**
+     * Reduce the HP of this player by a specified amount.
+     * 
+     * @param damage the amount of damage to deal to this player
+     */
+    public void takeDamage(int damage)
+    {
+        if (hasArmour)
+        {
+            /* Player has armour, use it to decrease the damage taken. */
+            armour.useArmour();
+
+            /* Protect against taking negative damage. */
+            health = health - Math.max(damage - armour.damageBlocked(), 0);
+
+            /* Check the hitpoint status of this armour. */
+            if (armour.hitpoints() <= 0)
+            {
+                /* Warn the player that their armour has broken. */
+                System.out.println("\nYour " + armour.name() + " broke.");
+
+                try
+                {
+                    Thread.sleep(DELAY);
+                }
+                catch (InterruptedException exception)
+                {
+                    System.out.println("The game experienced an interrupted exception.");
+                    System.out.println("The game data could not be saved.");
+                    System.out.println("Please restart the game.");
+                    System.exit(0);
+                } // end of catch (InterruptedException exception)
+
+                /* The armour is broken, the player no longer has armour. */
+                hasArmour = false;
+            } // end of if (armour.hitpoints() <= 0)
+        }
+        else
+        {
+            /* Take regular damage if the player does not have armour. */
+            health = health - damage;
+        } // end of if (hasArmour)
+    } // end of method damageDealt(int damage)
+
+    /* Methods that affect the potions of this player. */
+    /**
+     * Uses a potion on this player.
+     */
+    public void usePotion()
+    {
+        /* Exit the function if there are no potions */
+        if (potionsRemaining <= 0) return;
+
+        /* Use the potion to increase the player's health. */
+        health = health + POTION_HEALING;
+
+        /* Decrement the potions since one was just used. */
+        potionsRemaining--;
+    } // end of method usePotion()
+
+    /**
+     * Increases the amount of potions this player has by a specified amount.
+     * 
+     * @param potions the number of potions to add to this player
+     */
+    public void addPotions(int potions)
+    {
+        potionsRemaining = potionsRemaining + potions;
+    } // end of method addPotions(int number)
+
+    /**
+     * Increases the kill count of this player.
+     */
+    public void increaseEnemiesKilled()
+    {
+        enemiesKilled++;
+    } // end of increaseEnemiesKilled()
+
+    /* Methods that affect the equipment of this player. */
     /**
      * Gives a sword to this player.
      */
     public void addSword(String type)
     {
-        if (type.equals("metal"))
-        {
-            sword = new Sword("Metal Sword", 20, 10);
-        } // end of if (type.equals("metal"))
-        else if (type.equals("gold"))
-        {
-            sword = new Sword("Gold Sword", 30, 15);
-        } // end of if (type.equals("gold"))
-        else 
-        {
-            // Sword not specified. Default wood sword.
-            sword = new Sword("Wood Sword", 10, 5); 
-        } // end of else {...}
+        if (type == null) return;
+
+        sword = new Sword(type);
+
         hasSword = true;
     } // end of method addSword()
 
@@ -228,26 +325,36 @@ public class Player
      */
     public void addArmour(String type)
     {
-        if (type.equals("leather") || type.equals("iron") || type.equals("gold"))
-        {
-            armour = new Armour(type);
-            hasArmour = true;
-        } // end of if (type.equals("leather") || type.equals("iron") || type.equals("gold"))
-    } // end of method addSword()
+        if (type == null) return;
+
+        armour = new Armour(type);
+
+        hasArmour = true;
+    } // end of method addArmour()
 
     /**
-     * Removes the sword from this player.
+     * Returns this player's data to be saved in text format.
      */
-    public void removeSword()
+    public String getData()
     {
+        return
+        name + " " 
+        + hasSword + " "
+        + hasArmour + " "
+        + enemiesKilled + " "
+        + health + " "
+        + potionsRemaining;
+    } // end of method getData()
+
+    /**
+     * Resets the state of this player.
+     */
+    public void reset()
+    {
+        health = FULL_HEALTH;
+        potionsRemaining = DEFAULT_NUMBER_OF_POTIONS;
+        enemiesKilled = 0;
         hasSword = false;
-    } // end of method removeSword()
-
-    /**
-     * Removes the armour from this player.
-     */
-    public void removeArmour()
-    {
         hasArmour = false;
-    } // end of method removeArmour()
+    } // end of method reset()
 } // end of class Player
