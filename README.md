@@ -22,11 +22,11 @@ $ java TheDungeon
 
 The game will start after those commands are run.
 
-![List of commands in sequential order.](http://image.prntscr.com/image/208f795d34c1400584dbc65f10e85901.png)
+![List of commands in sequential order.](https://camo.githubusercontent.com/51f872bab74820723f6b986b4b22505c79358157/687474703a2f2f696d6167652e70726e747363722e636f6d2f696d6167652f32303866373935643334633134303035383464626336356631306538353930312e706e67)
 
 For a better playing experience use the BlueJ IDE and run the main method found in TheDungeon class.
 
-![BlueJ Running the main method.](http://image.prntscr.com/image/0ef457f73661412d90e650f43b7c3668.png)
+![BlueJ Running the main method.](https://camo.githubusercontent.com/cbd56c6847966e916062adeec8b339a0383989f3/687474703a2f2f696d6167652e70726e747363722e636f6d2f696d6167652f30656634353766373336363134313264393065363530663433623763333636382e706e67)
 
 ## Features:
 * Enemies drop swords, armour, and health potions upon defeat.
