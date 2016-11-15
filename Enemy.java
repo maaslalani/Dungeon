@@ -4,7 +4,7 @@ import java.util.Random;
  * The antagonist whom you must defeat.
  * 
  * @author Maas Lalani
- * @version 1.0 2015-11-17
+ * @version 1.2 2016-11-14
  */
 public class Enemy
 {

@@ -2,7 +2,7 @@
  * Blocks a set number of damage of an enemy's attack.
  * 
  * @author Maas Lalani
- * @version 2015-11-17
+ * @version 1.2 2016-11-14
  */
 public class Armour
 {

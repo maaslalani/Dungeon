@@ -2,7 +2,7 @@
  * A weapon which inflicts an increased number of damage to an enemy.
  * 
  * @author Maas Lalani
- * @version 2015-11-17
+ * @version 1.2 2016-11-14
  */
 public class Sword
 {
@@ -40,7 +40,7 @@ public class Sword
     {        
         if (type == null) return;
 
-        name = type + " armour";
+        name = type + " sword";
 
         switch (type)
         {
@@ -60,9 +60,9 @@ public class Sword
             break;
 
             default:
-            name = "balloon sword";
-            hitpoints = 0;
-            damageIncrease = 0;
+            name = "wood sword";
+            hitpoints = WOOD_HITPOINTS;
+            damageIncrease = WOOD_DAMAGE_INCREASE;
             break;
         } // end of switch (type)
     } // end of constructor Sword(String  type)

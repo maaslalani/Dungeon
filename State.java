@@ -30,23 +30,26 @@ public class State
         {
             System.out.print("Enter your name: ");
             String name = scanner.nextLine();
+
+            /* Remove whitespace from the name. */
+            name = name.replaceAll("\\s+","");
             player.setName(name);
         }
 
         try
         {
             File userData = new File("users/" + player.getName() + ".txt");
-            
+
             /* Create the parent directories if they do not exist. */
             userData.getParentFile().mkdirs();
-            
+
             PrintWriter writer = new PrintWriter(userData);
 
             /* Save player data to file. */
             writer.println(player.getData());
 
             writer.close();
-            
+
             System.out.println("Your data was saved. You may now safely close the console.");
         }
         catch (FileNotFoundException exception)
@@ -60,8 +63,7 @@ public class State
      */
     public static void loadState(Player player) throws FileNotFoundException, IOException
     {
-        /* Order of the data is [name, hasSword, hasArmour, enemiesKilled, health, numberOfPotions] */
-
+        /* Order of the data is [name, hasSword, hasArmour, enemiesKilled, health, numberOfPotions, coins] */
         BufferedReader reader = new BufferedReader(new FileReader("users/" + player.getName() + ".txt"));
 
         /* Load saved player data */
@@ -74,6 +76,7 @@ public class State
         int enemiesKilled = Integer.parseInt(data[3]);
         int health = Integer.parseInt(data[4]);
         int numberOfPotions = Integer.parseInt(data[5]);
+        int coins = Integer.parseInt(data[6]);
 
         /* Set the name of this player. */
         player.setName(name);
@@ -92,5 +95,9 @@ public class State
 
         /* Set the number of potions of this player. */
         player.setNumberOfPotions(numberOfPotions);
+        
+        /* Set the coins of this player. */
+        player.getPouch().setCoins(coins);
     } // end of method saveState(State state)
+
 } // end of class State

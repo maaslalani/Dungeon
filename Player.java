@@ -4,7 +4,7 @@ import java.util.Random;
  * The main character in this game.
  * 
  * @author Maas Lalani
- * @version 1.0 2015-11-17
+ * @version 1.2 2016-11-12
  */
 public class Player
 {
@@ -38,6 +38,7 @@ public class Player
     private boolean hasSword;
     private boolean hasArmour;
     private int health;
+    private Pouch pouch;
     private String name;
     private int potionsRemaining;
     private Sword sword;
@@ -55,6 +56,7 @@ public class Player
         enemiesKilled = 0;
         sword = new Sword("balloon");
         armour = new Armour("clothes");
+        pouch = new Pouch();
     } // end of constructor Player()
 
     /* Accessors */
@@ -117,6 +119,16 @@ public class Player
     {
         return armour;
     } // end of method getSword()
+    
+    /**
+     * Returns the pouch of this player.
+     * 
+     * @return the pouch of this player
+     */
+    public Pouch getPouch()
+    {
+        return pouch;
+    } // end of method getPouch()
 
     /**
      * Returns whether this player has a sword.
@@ -343,7 +355,8 @@ public class Player
         + hasArmour + " "
         + enemiesKilled + " "
         + health + " "
-        + potionsRemaining;
+        + potionsRemaining + " "
+        + pouch.getCoins();
     } // end of method getData()
 
     /**
