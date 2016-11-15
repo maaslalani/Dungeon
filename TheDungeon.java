@@ -21,7 +21,7 @@ public class TheDungeon
     /** The menu option for attacking. */
     public static final int ATTACK = 1;
 
-    /** The string to answer yes or no questions affirmatively. Not case-sensitive. */
+    /** The string which contains all acceptable afirmative answers to yes or no questions. Not case-sensitive. */
     public static final String CONFIRMATION = "yesyyupoksureof course";
 
     /** The delay used for display messages. */
@@ -32,8 +32,11 @@ public class TheDungeon
 
     /** The delay used for display messages. */
     public static final int MAXIMUM_GOLD_DROP = 30;
-
-    /** The RANDOM number generator of this game. */
+    
+    /** The coin / health penalty for running away,  */
+    public static final int PENALTY_FOR_RUNNING = 5;
+    
+    /** The random number generator of this game. */
     public static final Random RANDOM = new Random();
 
     /** The menu option for running away. */
@@ -140,7 +143,7 @@ public class TheDungeon
                     case USE_POTION:
                         if (player.health() > player.FULL_HEALTH - player.POTION_HEALING) 
                         {
-                            System.out.println("\n You are healthy, and do not need a potion.");
+                            System.out.println("\nYou are healthy, and do not need a potion.");
                             TheDungeon.delay();
                             break;
                         } // end of if (player.health() > player.FULL_HEALTH - player.POTION_HEALING)
@@ -154,6 +157,19 @@ public class TheDungeon
                         break;
 
                     case RUN:
+                        /* Penalize the player by removing their coins or health */
+                        if (player.getPouch().getCoins() > PENALTY_FOR_RUNNING)
+                        {
+                            System.out.println("\n" + PENALTY_FOR_RUNNING + " coins were stolen by the " + villain.name());
+                            pouch.removeCoins(PENALTY_FOR_RUNNING);
+                        }
+                        /* Player does not have enough coins. Take away health instead of coins. */
+                        else
+                        {
+                            System.out.println("\nThe enemy did " + PENALTY_FOR_RUNNING + " damage before you managed to escape");
+                            player.takeDamage(PENALTY_FOR_RUNNING);
+                        } // end of if (player.getPouch().getCoins() > PENALTY_FOR_RUNNING)
+                            
                         System.out.println("\nYou successfully ran away!");
                         delay();
     
@@ -217,12 +233,12 @@ public class TheDungeon
                 {
                     if (player.hasSword())
                     {
-                        System.out.println("\n The " + villain.name() + " dropped a sword, but you already have one.");
+                        System.out.println("\nThe " + villain.name() + " dropped a sword, but you already have one.");
                     } // end of if (player.hasSword())
                     else
                     {
                         player.addSword("");
-                        System.out.println("\n The " + villain.name() + " dropped a " + player.getSword().name() + ".\nYour attack damage has now increased by " + player.getSword().damageIncrease() + ".");
+                        System.out.println("\nThe " + villain.name() + " dropped a " + player.getSword().name() + ".\nYour attack damage has now increased by " + player.getSword().damageIncrease() + ".");
                     } // end of if (player.hasSword())
                     delay();            
                 } // end of if (RANDOM.nextInt(100) < swordDropChance)
