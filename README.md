@@ -36,7 +36,9 @@ For a better playing experience use the BlueJ IDE and run the main method found 
 * Store to purchase various game items.
 
 ## Todo:
-* Penalty for running away.
+* ~~Add currency such as gold coins.~~
+* ~~Add a store to purchase swords and armour.~~
+* ~~Penalty for running away.~~
 * Add more names to the enemy list.
 * Give enemies special abilities.
 * Give player special power-ups.
