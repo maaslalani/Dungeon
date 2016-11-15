@@ -32,10 +32,10 @@ For a better playing experience use the BlueJ IDE and run the main method found 
 * Enemies drop swords, armour, and health potions upon defeat.
 * Swords and armour come in different variety.
 * Ability to load and save state of the game.
+* Gold coins as currency.
+* Store to purchase various game items.
 
 ## Todo:
-* Add currency such as gold coins.
-* Implement a store to buy swords and armour.
 * Penalty for running away.
 * Add more names to the enemy list.
 * Give enemies special abilities.
