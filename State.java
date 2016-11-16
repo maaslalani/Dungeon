@@ -45,8 +45,10 @@ public class State
 
             PrintWriter writer = new PrintWriter(userData);
 
-            /* Save player data to file. */
-            writer.println(player.getData());
+            /* Save encrypted player data to file. */
+            String encrypted = Cipher.encrypt(player.getData());
+            
+            writer.println(encrypted);
 
             writer.close();
 
@@ -66,8 +68,10 @@ public class State
         /* Order of the data is [name, hasSword, hasArmour, enemiesKilled, health, numberOfPotions, coins] */
         BufferedReader reader = new BufferedReader(new FileReader("users/" + player.getName() + ".txt"));
 
-        /* Load saved player data */
-        String[] data = reader.readLine().split(" ");
+        /* Load saved decrypted player data */
+        String[] data = Cipher.decrypt(reader.readLine()).split(" ");
+        
+        reader.close();
 
         /* Extract the data into local variables from the string array */
         String name = data[0];
