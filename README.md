@@ -43,7 +43,7 @@ For a better playing experience use the BlueJ IDE and run the main method found 
 * Give enemies special abilities.
 * Give player special power-ups.
 * Keep track of highest enemies killed.
-* Encrypted data, instead of text files.
+* ~~Encrypted data~~
 * Implement a graphical user interface.
 
 ## Contribute:
