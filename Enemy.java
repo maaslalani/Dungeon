@@ -6,8 +6,7 @@ import java.util.Random;
  * @author Maas Lalani
  * @version 1.2 2016-11-14
  */
-public class Enemy
-{
+public class Enemy {
     /* class fields */
     /** An array of possible enemy types. */
     public static final String[] ENEMY_NAMES = { "Zombie", "Skeleton", "Warrior", "Goblin", "Werewolf", "Vampire" };
@@ -31,8 +30,7 @@ public class Enemy
     /**
      * Constructs a new enemy.
      */
-    public Enemy()
-    {
+    public Enemy() {
         /* Fetch a random name from the list of enemies. */
         name = ENEMY_NAMES[RANDOM.nextInt(ENEMY_NAMES.length)];
 
@@ -45,9 +43,8 @@ public class Enemy
      * 
      * @return the damage dealt by this enemy
      */
-    public int attack()
-    {
-        return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
+    public int attack() {
+        return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE) + (name.equals("Warrior") ? 10 : 0);
     } // end of method attack()
 
     /**
@@ -55,9 +52,13 @@ public class Enemy
      * 
      * @param damage the amount to reduce the
      */
-    public void takeDamage(int damage)
-    {
+    public void takeDamage(int damage) {
+
+        if (this.name.equals("Skeleton") && RANDOM.nextInt() % 3 == 2)
+            return;
+
         health = health - damage;
+
     } // end of method damageDealt(int damage)
 
     /**
@@ -65,8 +66,7 @@ public class Enemy
      * 
      * @return the name of the enemy
      */
-    public String name()
-    {
+    public String name() {
         return name;
     } // end of method name()
 
@@ -75,8 +75,8 @@ public class Enemy
      * 
      * @return heatlh of this enemy
      */
-    public int health()
-    {
+    public int jealth() {
         return health;
     } // end of method health()
+
 } // end of class Enemy
