@@ -35,9 +35,17 @@ public class Enemy
     {
         /* Fetch a random name from the list of enemies. */
         name = ENEMY_NAMES[RANDOM.nextInt(ENEMY_NAMES.length)];
-
         /* Give the enemy a random health */
-        health = RANDOM.nextInt(MAXIMUM_HEALTH);
+        
+        if(name.equals("Warrior")){
+            int wHealth  = RANDOM.nextInt(MAXIMUM_HEALTH);
+            while(wHealth <= 25 || wHealth >= 50){
+                wHealth = RANDOM.nextInt(MAXIMUM_HEALTH);;
+            }
+            health = wHealth;
+        } else {
+            health = RANDOM.nextInt(MAXIMUM_HEALTH);
+        }
     } // end of constructor Enemy()
 
     /**
@@ -47,7 +55,15 @@ public class Enemy
      */
     public int attack()
     {
-        return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
+        if(this.name.equals("Warrior")){
+            int wAttack = RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
+            while(wAttack <= 10 || wAttack >= 15){
+                wAttack = RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
+            }
+            return wAttack;
+        } else {
+            return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
+        }
     } // end of method attack()
 
     /**
@@ -58,6 +74,7 @@ public class Enemy
     public void takeDamage(int damage)
     {
         health = health - damage;
+
     } // end of method damageDealt(int damage)
 
     /**

@@ -128,12 +128,29 @@ public class TheDungeon
                 {
                     case ATTACK:
                         ranAway = false;
+                        
                         int playerAttack = player.attack();
+                        if(villain.name().equals("Skeleton")){
+                            while(playerAttack >= 5){
+                                playerAttack = player.attack();
+                            }
+                        } else {
+                            playerAttack = player.attack();
+                        }
+                        
                         int enemyAttack = villain.attack();
 
                         System.out.println("\nYou dealt " + playerAttack + " damage.");
                         System.out.println("You took " + enemyAttack + " damage.");
-    
+
+                        
+                        if(villain.name().equals("Goblin")){
+                            if(playerAttack < enemyAttack) {
+                                System.out.println("\n" + "1 coin was stolen by the " + villain.name());
+                                pouch.removeCoins(1);
+                            }    
+                        }
+
                         villain.takeDamage(playerAttack);
                         player.takeDamage(enemyAttack);
     
