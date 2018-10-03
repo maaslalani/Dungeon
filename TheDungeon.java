@@ -121,7 +121,8 @@ public class TheDungeon
                 }
                 catch (NumberFormatException exception)
                 {
-                    choice = RUN;
+                    System.out.println("Invalid command, please try again.");
+                    continue;
                 } // end of catch (NumberFormatException exception)
 
                 switch (choice)
