@@ -128,13 +128,20 @@ public class TheDungeon
                 {
                     case ATTACK:
                         ranAway = false;
-                        int playerAttack = player.attack();
-                        int enemyAttack = villain.attack();
 
-                        System.out.println("\nYou dealt " + playerAttack + " damage.");
+                        if(player.hasDoubleAttack()) {
+                            for(int i = 0; i < 2; i++) {
+                                int playerAttack = player.attack();
+
+                                System.out.println("\nYou dealt " + playerAttack + " damage.");
+                                villain.takeDamage(playerAttack);
+                            }
+                            player.setDoubleAttack(false);
+                        }
+                        System.out.println("\nYou used your double attack power-up");
+
+                        int enemyAttack = villain.attack();
                         System.out.println("You took " + enemyAttack + " damage.");
-    
-                        villain.takeDamage(playerAttack);
                         player.takeDamage(enemyAttack);
     
                         delay();

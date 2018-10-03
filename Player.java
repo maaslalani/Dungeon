@@ -42,6 +42,7 @@ public class Player
     private String name;
     private int potionsRemaining;
     private Sword sword;
+    private boolean hasDoubleAttack;
 
     /**
      * Constructs a new Player.
@@ -57,6 +58,7 @@ public class Player
         sword = new Sword("balloon");
         armour = new Armour("clothes");
         pouch = new Pouch();
+        hasDoubleAttack = false;
     } // end of constructor Player()
 
     /* Accessors */
@@ -185,9 +187,9 @@ public class Player
     } // end of method setName(String name)   
 
     /**
-     * Sets the  of this player.
+     * Sets the number of potions of this player.
      * 
-     * @param name the new name of this player
+     * @param potions the new number of potions of this player
      */
     public void setNumberOfPotions(int potions)
     {
@@ -195,7 +197,27 @@ public class Player
         {
             potionsRemaining = potions;
         } // end of if (potions >= 0)
-    } // end of method setName(String name)    
+    } // end of method setName(String name)
+
+    /**
+     * Returns whether this player has double attack power-up.
+     *
+     * @return <code>true</code> if this player has double attack, otherwise <code>false</code>
+     */
+    public boolean hasDoubleAttack()
+    {
+        return hasDoubleAttack;
+    } // end of method hasDoubleAttack()
+
+    /**
+     * Sets the double attack power-up of this player.
+     *
+     * @param doubleAttack the new value of the double attack power-up of this player
+     */
+    public void setDoubleAttack(boolean doubleAttack)
+    {
+        this.hasDoubleAttack = doubleAttack;
+    } // end of method setDoubleAttack(boolean doubleAttack)
 
     /* Utility methods */
 
