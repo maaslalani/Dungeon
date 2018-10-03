@@ -10,7 +10,50 @@ public class Enemy
 {
     /* class fields */
     /** An array of possible enemy types. */
-    public static final String[] ENEMY_NAMES = { "Zombie", "Skeleton", "Warrior", "Goblin", "Werewolf", "Vampire" };
+    public static final String[] ENEMY_NAMES = { 
+        "Zombie",
+        "Skeleton",
+        "Warrior",
+        "Goblin",
+        "Werewolf",
+        "Vampire",
+        "Bat",
+        "Wolf",
+        "Rat",
+        "Bear",
+        "Thief",
+        "Cyclops",
+        "Minotaur",
+        "Hellhound",
+        "Hydra",
+        "Gorgon",
+        "Dragon",
+        "Witch",
+        "Wizard",
+        "Dwarf",
+        "Beholder",
+        "Behemoth",
+        "Ghoul",
+        "Driad",
+        "Treant",
+        "Orc",
+        "Skelleton",
+        "Old King",
+        "Corrupeted Human",
+        "Slime",
+        "Monk",
+        "Barbarian",
+        "Pirate",
+        "Ghost",
+        "Mummy",
+        "Fire Spirit",
+        "Water Spirit",
+        "Earth Spirit",
+        "Wind Spirit",
+        "Assassin",
+        "Demon",
+        "Diabolic Cultist"
+    };
 
     /** The maximum attack damage of this enemy. */
     public static final int MAXIMUM_ATTACK_DAMAGE = 20;
