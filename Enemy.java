@@ -35,10 +35,16 @@ public class Enemy
     public static final int MAXIMUM_ATTACK_DAMAGE = 20;
 
     /** The maximum health of this enemy. */
-    public static final int MAXIMUM_HEALTH = 75;
+    public static final int TIER1_MAXIMUM_HEALTH = 25;
+    public static final int TIER2_MAXIMUM_HEALTH = 50;
+    public static final int TIER3_MAXIMUM_HEALTH = 75;
+    public static final int TIER4_MAXIMUM_HEALTH = 100;
 
     /** The minimum health of this enemy. */
-    public static final int MINIMUM_HEALTH = 1;
+    public static final int TIER1_MINIMUM_HEALTH = 1;
+    public static final int TIER2_MINIMUM_HEALTH = 25;
+    public static final int TIER3_MINIMUM_HEALTH = 50;
+    public static final int TIER4_MINIMUM_HEALTH = 75;
 
     /** The random number generator of this enemy. */
     public static final Random RANDOM = new Random();
@@ -50,13 +56,29 @@ public class Enemy
     /**
      * Constructs a new enemy.
      */
-    public Enemy()
+    public Enemy(Pouch playerPouch)
     {
         /* Fetch a random name from the list of enemies. */
         name = ENEMY_NAMES[RANDOM.nextInt(ENEMY_NAMES.length)];
 
-        /* Give the enemy a random health */
-        health = RANDOM.nextInt(MAXIMUM_HEALTH);
+        /* Give the enemy a random health depending on player's coins */
+        if(playerPouch.getCoins() <= 30)
+        {
+            health = RANDOM.nextInt(TIER1_MAXIMUM_HEALTH-TIER1_MINIMUM_HEALTH) + TIER1_MINIMUM_HEALTH;
+        }
+        else if(playerPouch.getCoins() <= 60)
+        {
+            health = RANDOM.nextInt(TIER2_MAXIMUM_HEALTH-TIER2_MINIMUM_HEALTH) + TIER2_MINIMUM_HEALTH;
+        }
+        else if(playerPouch.getCoins() <= 90)
+        {
+            health = RANDOM.nextInt(TIER3_MAXIMUM_HEALTH-TIER3_MINIMUM_HEALTH) + TIER3_MINIMUM_HEALTH;
+        }
+        else
+        {
+            health = RANDOM.nextInt(TIER4_MAXIMUM_HEALTH-TIER4_MINIMUM_HEALTH) + TIER4_MINIMUM_HEALTH;
+        }
+        
     } // end of constructor Enemy()
 
     /**

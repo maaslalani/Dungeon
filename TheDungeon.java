@@ -105,7 +105,7 @@ public class TheDungeon
         while (running) 
         {
             // Main enemy 
-            Enemy villain = new Enemy();
+            Enemy villain = new Enemy(player.getPouch());
 
             while (villain.health() > 0)
             {
@@ -148,12 +148,18 @@ public class TheDungeon
                             TheDungeon.delay();
                             break;
                         } // end of if (player.health() > player.FULL_HEALTH - player.POTION_HEALING)
-                        
-                        player.usePotion();
+                        if(player.getPotions() > 0)
+                        {
+                            player.usePotion();
     
-                        System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
-                        System.out.println("Current HP: " + player.health());
-    
+                            System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
+                            System.out.println("Current HP: " + player.health());
+                        }
+                        else
+                        {
+                            System.out.println("You are out of potions.");
+                            System.out.println("Current HP: " + player.health());
+                        }
                         delay();
                         break;
 
