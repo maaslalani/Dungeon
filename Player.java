@@ -31,6 +31,9 @@ public class Player
     /** The default name given to a player. */
     public static final String NO_NAME = "";
 
+    /** The maximum times the player can turn invisible. */
+    public static final int MAX_INVISIBILITY = 3;
+
     /* instance fields */
     private Armour armour;
     private int attackDamage;
@@ -42,6 +45,8 @@ public class Player
     private String name;
     private int potionsRemaining;
     private Sword sword;
+    private boolean isInvisible;
+    private int usedInvisibility;
 
     /**
      * Constructs a new Player.
@@ -57,6 +62,8 @@ public class Player
         sword = new Sword("balloon");
         armour = new Armour("clothes");
         pouch = new Pouch();
+        this.setIsInvisible(false);
+        usedInvisibility = 0;
     } // end of constructor Player()
 
     /* Accessors */
@@ -248,6 +255,17 @@ public class Player
      */
     public void takeDamage(int damage)
     {
+        if (this.getIsInvisible())
+        {
+            if (usedInvisibility < MAX_INVISIBILITY)
+            {
+                usedInvisibility++;
+                return;
+            }else{
+                this.setIsInvisible(false);
+            }
+        }
+
         if (hasArmour)
         {
             /* Player has armour, use it to decrease the damage taken. */
@@ -370,4 +388,18 @@ public class Player
         hasSword = false;
         hasArmour = false;
     } // end of method reset()
+
+    /**
+     * Set the invisibility of the player
+     */
+    public void setIsInvisible(Boolean invisibility){
+        isInvisible = invisibility;
+    }
+
+    /**
+     * Returns the value for isInvisible of the player
+     */
+    public Boolean getIsInvisible(){
+        return isInvisible;
+    }
 } // end of class Player
