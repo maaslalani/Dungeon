@@ -1,3 +1,6 @@
+import Ennemies.*;
+
+import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 import java.util.Arrays;
@@ -104,10 +107,15 @@ public class TheDungeon
         // Game loop
         while (running) 
         {
-            // Main enemy 
-            Enemy villain = new Enemy();
+            // Main enemy
+            Enemy villain = new Zombie();
+            List<Class<? extends Enemy>> list = Arrays.asList(Goblin.class, Skeleton.class, Vampire.class, Warrior.class,Zombie.class, Werewolf.class);
+            try {
+                villain=list.get(new Random().nextInt(list.size())).newInstance();
+            }catch(Exception e){
+            }
 
-            while (villain.health() > 0)
+            while (villain.getHealth() > 0)
             {
                 printStatistics(player, villain);
 
@@ -160,7 +168,7 @@ public class TheDungeon
                         /* Penalize the player by removing their coins or health */
                         if (player.getPouch().getCoins() > PENALTY_FOR_RUNNING)
                         {
-                            System.out.println("\n" + PENALTY_FOR_RUNNING + " coins were stolen by the " + villain.name());
+                            System.out.println("\n" + PENALTY_FOR_RUNNING + " coins were stolen by the " + villain.getName());
                             pouch.removeCoins(PENALTY_FOR_RUNNING);
                         }
                         /* Player does not have enough coins. Take away health instead of coins. */
@@ -174,7 +182,7 @@ public class TheDungeon
                         delay();
     
                         /* Kill the enemy by dealing damage equivalent to its health. */
-                        villain.takeDamage(villain.health());
+                        villain.takeDamage(villain.getHealth());
     
                         ranAway = true;
                         break;
@@ -214,7 +222,7 @@ public class TheDungeon
                         System.out.println("\nProgram terminated.");
 
                         /* Kill the enemy by dealing damage equivalent to its health. */
-                        villain.takeDamage(villain.health());
+                        villain.takeDamage(villain.getHealth());
                         running = false;
                         return;
                     } // end of if (input.equals("1"))   
@@ -233,12 +241,12 @@ public class TheDungeon
                 {
                     if (player.hasSword())
                     {
-                        System.out.println("\nThe " + villain.name() + " dropped a sword, but you already have one.");
+                        System.out.println("\nThe " + villain.getName() + " dropped a sword, but you already have one.");
                     } // end of if (player.hasSword())
                     else
                     {
                         player.addSword("");
-                        System.out.println("\nThe " + villain.name() + " dropped a " + player.getSword().name() + ".\nYour attack damage has now increased by " + player.getSword().damageIncrease() + ".");
+                        System.out.println("\nThe " + villain.getName() + " dropped a " + player.getSword().name() + ".\nYour attack damage has now increased by " + player.getSword().damageIncrease() + ".");
                     } // end of if (player.hasSword())
                     delay();            
                 } // end of if (RANDOM.nextInt(100) < swordDropChance)
@@ -247,12 +255,12 @@ public class TheDungeon
                 {
                     if (player.hasArmour())
                     {
-                        System.out.println("\nThe " + villain.name() + " dropped some armour, but you already have some.");
+                        System.out.println("\nThe " + villain.getName() + " dropped some armour, but you already have some.");
                     } // end of if (player.hasArmour())
                     else
                     {
                         player.addArmour("leather");
-                        System.out.println("\nThe " + villain.name() + " dropped " + player.getArmour().name() + ".\nYour damage taken has now decreased by " + player.getArmour().damageBlocked() + ".");
+                        System.out.println("\nThe " + villain.getName() + " dropped " + player.getArmour().name() + ".\nYour damage taken has now decreased by " + player.getArmour().damageBlocked() + ".");
                     } // end of if (player.hasArmour())
                     delay(); 
                 } // end of else if (RANDOM.nextInt(100) < armourDropChance)
@@ -260,7 +268,7 @@ public class TheDungeon
                 else if (RANDOM.nextInt(100) < healthPotionDropChance)
                 {
                     player.addPotions(1);
-                    System.out.println("\nThe " + villain.name() + " dropped a health potion.");
+                    System.out.println("\nThe " + villain.getName() + " dropped a health potion.");
                     delay();
                 } // end of else if (RANDOM.nextInt(100) < healthPotionDropChance)  
             } // end of if(!ranAway)
@@ -287,10 +295,10 @@ public class TheDungeon
     public static void printStatistics(Player player, Enemy villain )
     {
         // Statistics
-        System.out.println("\f# A " + villain.name() + " appeared #");
+        System.out.println("\f# A " + villain.getName() + " appeared #");
 
         System.out.println("\n# You have " + player.health() + " HP #");
-        System.out.println("# Enemy has " + villain.health() + " HP #");
+        System.out.println("# Enemy has " + villain.getHealth() + " HP #");
         System.out.println("# Potions left: " + player.getPotions() + " #");
         System.out.println("# Pouch has " + player.getPouch().getCoins() + " coins #");
         System.out.println("# Enemies killed: " + player.enemiesKilled() + " #");
