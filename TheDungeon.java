@@ -147,8 +147,15 @@ public class TheDungeon
                             TheDungeon.delay();
                             break;
                         } // end of if (player.health() > player.FULL_HEALTH - player.POTION_HEALING)
-                        
-                        player.usePotion();
+                        if(villain.name().equals("werewolf")){
+                            int count = 0
+                            while(count<2){
+                                player.usePotion();
+                                count++;
+                            }
+                        } else {
+                            player.usePotion();
+                        }
     
                         System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
                         System.out.println("Current HP: " + player.health());
