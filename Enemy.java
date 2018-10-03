@@ -57,7 +57,12 @@ public class Enemy
      */
     public void takeDamage(int damage)
     {
-        health = health - damage;
+        if(name.equals("Vampire")){
+            health = health - (damage/2);
+        }
+        else{
+            health = health - damage;    
+        }
     } // end of method damageDealt(int damage)
 
     /**
