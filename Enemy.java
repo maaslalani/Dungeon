@@ -17,6 +17,7 @@ public class Enemy
         "Goblin",
         "Werewolf",
         "Vampire",
+        "Slime",
         "Bat",
         "Wolf",
         "Rat",
@@ -40,7 +41,6 @@ public class Enemy
         "Skelleton",
         "Old King",
         "Corrupeted Human",
-        "Slime",
         "Monk",
         "Barbarian",
         "Pirate",
@@ -54,7 +54,7 @@ public class Enemy
         "Demon",
         "Diabolic Cultist"
     };
-
+  
     /** The maximum attack damage of this enemy. */
     public static final int MAXIMUM_ATTACK_DAMAGE = 20;
 
