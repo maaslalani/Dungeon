@@ -66,7 +66,13 @@ public class Enemy
      */
     public int attack()
     {
-        return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
+        if(name.equals("Giant")) {
+            Double maxDmg = MAXIMUM_ATTACK_DAMAGE + MAXIMUM_ATTACK_DAMAGE * 0.5;
+            return RANDOM.nextInt(maxDmg.intValue());
+        }
+        else {
+            return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
+        }
     } // end of method attack()
 
     /**
