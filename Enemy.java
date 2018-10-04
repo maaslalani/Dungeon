@@ -28,7 +28,12 @@ public class Enemy
       "Clown",
       "Bat",
       "Undead",
-      "Slime"
+      "Slime",
+	  "Dragon Lord",
+	  "Joker",
+	  "Murloc",
+	  "Frieza",
+	  "Giant Worm"
     };
 
     /** The maximum attack damage of this enemy. */
