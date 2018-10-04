@@ -106,6 +106,7 @@ public class TheDungeon
         {
             // Main enemy 
             Enemy villain = new Enemy();
+			
 
             while (villain.health() > 0)
             {
@@ -128,14 +129,21 @@ public class TheDungeon
                 {
                     case ATTACK:
                         ranAway = false;
+						int enemyAttackOption = new Random().nextInt(2);
                         int playerAttack = player.attack();
-                        int enemyAttack = villain.attack();
-
-                        System.out.println("\nYou dealt " + playerAttack + " damage.");
-                        System.out.println("You took " + enemyAttack + " damage.");
-    
-                        villain.takeDamage(playerAttack);
-                        player.takeDamage(enemyAttack);
+						System.out.println("\nYou dealt " + playerAttack + " damage.");
+						if(enemyAttackOption == 0){
+							int enemyAttack = villain.attack();
+							System.out.println("You took " + enemyAttack + " damage.");
+							villain.takeDamage(playerAttack);
+							player.takeDamage(enemyAttack);
+						}
+                        else{
+							int enemyAttack = villain.magic();
+							System.out.println("You got a crazy bite, that took " + enemyAttack + " damage.");
+							villain.takeDamage(playerAttack);
+							player.takeDamage(enemyAttack);
+						}
     
                         delay();
                         break;

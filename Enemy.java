@@ -69,11 +69,21 @@ public class Enemy
      * 
      * @return the damage dealt by this enemy
      */
+	 
     public int attack()
     {
         return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
     } // end of method attack()
-
+	
+	/**
+     * Returns the damage dealt by this enemy with a increase.
+     * 
+     * @return the damage dealt by this enemy
+     */
+	public int magic()
+	{
+		return 20;
+	}
     /**
      * Reduces the HP of this enemy by a specifed value.
      * 
