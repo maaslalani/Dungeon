@@ -75,7 +75,7 @@ public class Enemy {
      * 
      * @return heatlh of this enemy
      */
-    public int jealth() {
+    public int health() {
         return health;
     } // end of method health()
 
