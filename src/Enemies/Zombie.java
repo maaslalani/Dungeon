@@ -1,11 +1,11 @@
-package Ennemies;
+package Enemies;
 
-public class Skeleton extends Enemy{
+public class Zombie extends Enemy {
 
-    public Skeleton(){
+
+    public Zombie(){
         super();
     }
-
 
     @Override
     public int attack() {

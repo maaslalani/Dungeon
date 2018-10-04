@@ -1,21 +1,19 @@
-package Ennemies;
+package Enemies;
 
-public class Vampire extends Enemy  {
+public class Skeleton extends Enemy{
 
-    public Vampire(){
+    public Skeleton() {
         super();
     }
 
 
     @Override
     public int attack() {
-        int inflicted = RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
-        return inflicted;
-
+        return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
     }
 
     @Override
     public void takeDamage(int damage) {
         setHealth(this.getHealth()-damage);
-    }
+    }// end of method takeDamage
 }

@@ -1,21 +1,16 @@
-import Ennemies.*;
+import Enemies.*;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 import java.util.Arrays;
 
-import java.io.PrintWriter;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
  * A text-based adventure action game.
- * 
+ *
  * @author Maas Lalani
  * @version 1.3 2016-11-12
  */
@@ -35,10 +30,10 @@ public class TheDungeon
 
     /** The delay used for display messages. */
     public static final int MAXIMUM_GOLD_DROP = 30;
-    
+
     /** The coin / health penalty for running away,  */
     public static final int PENALTY_FOR_RUNNING = 5;
-    
+
     /** The random number generator of this game. */
     public static final Random RANDOM = new Random();
 
@@ -56,7 +51,7 @@ public class TheDungeon
 
     /**
      * The dungeon game.
-     * 
+     *
      * @param argument not used
      */
     public static void main(String[] argument)
@@ -74,6 +69,7 @@ public class TheDungeon
         boolean ranAway = false;
 
         // Game introduction
+        clear();
         System.out.println("\fWelcome to the dungeon.");
 
         System.out.print("Would you like to load your previous game? ");
@@ -105,7 +101,7 @@ public class TheDungeon
         } // end of if (loadGameState.equalsIgnoreCase("Y"))
 
         // Game loop
-        while (running) 
+        while (running)
         {
             // Main enemy
             Enemy villain = new Zombie();
@@ -123,7 +119,7 @@ public class TheDungeon
 
                 int choice;
 
-                try 
+                try
                 {
                     choice = Integer.parseInt(SCANNER.nextLine());
                 }
@@ -141,26 +137,31 @@ public class TheDungeon
 
                         System.out.println("\nYou dealt " + playerAttack + " damage.");
                         System.out.println("You took " + enemyAttack + " damage.");
-    
+
                         villain.takeDamage(playerAttack);
                         player.takeDamage(enemyAttack);
-    
+
                         delay();
                         break;
 
                     case USE_POTION:
-                        if (player.health() > player.FULL_HEALTH - player.POTION_HEALING) 
+                        if (player.health() > player.FULL_HEALTH - player.POTION_HEALING)
                         {
                             System.out.println("\nYou are healthy, and do not need a potion.");
                             TheDungeon.delay();
                             break;
                         } // end of if (player.health() > player.FULL_HEALTH - player.POTION_HEALING)
-                        
+
+                        if (player.getPotions() < 1) {
+                        	System.out.println("\nYou do not have potions to drink.");
+                        	break;
+                        } // end of if (player.getPotions() < 1)
+
                         player.usePotion();
-    
+
                         System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
                         System.out.println("Current HP: " + player.health());
-    
+
                         delay();
                         break;
 
@@ -177,30 +178,32 @@ public class TheDungeon
                             System.out.println("\nThe enemy did " + PENALTY_FOR_RUNNING + " damage before you managed to escape");
                             player.takeDamage(PENALTY_FOR_RUNNING);
                         } // end of if (player.getPouch().getCoins() > PENALTY_FOR_RUNNING)
-                            
+
                         System.out.println("\nYou successfully ran away!");
                         delay();
-    
+
                         /* Kill the enemy by dealing damage equivalent to its health. */
                         villain.takeDamage(villain.getHealth());
-    
+
                         ranAway = true;
                         break;
 
                     case VISIT_STORE:
                         /* Print the store options. */
+                        clear();
                         Store.printStore(player);
                         break;
-    
+
                     case EXIT:
+                        clear();
                         System.out.println("\fExiting game...");
                         System.out.print("Would you like to save your progress? ");
-    
+
                         if (CONFIRMATION.contains(SCANNER.nextLine()))
                         {
                             State.saveState(player);
                         } // end of if (CONFIRMATION.contains(SCANNER.nextLine()))
-    
+
                         running = false;
                         return;
                 } // end of switch (choice)
@@ -212,12 +215,12 @@ public class TheDungeon
                     System.out.print("Would you like to respawn? ");
                     String continueGame = SCANNER.nextLine();
 
-                    if (CONFIRMATION.contains(continueGame)) 
+                    if (CONFIRMATION.contains(continueGame))
                     {
                         running = true;
                         player.reset();
-                    } // end of if (input.equals("1")) 
-                    else 
+                    } // end of if (input.equals("1"))
+                    else
                     {
                         System.out.println("\nProgram terminated.");
 
@@ -225,7 +228,7 @@ public class TheDungeon
                         villain.takeDamage(villain.getHealth());
                         running = false;
                         return;
-                    } // end of if (input.equals("1"))   
+                    } // end of if (input.equals("1"))
                 }  // end of if (player.health() <= 0)
             } // end of loop while (villain.health() > 0)
 
@@ -248,7 +251,7 @@ public class TheDungeon
                         player.addSword("");
                         System.out.println("\nThe " + villain.getName() + " dropped a " + player.getSword().name() + ".\nYour attack damage has now increased by " + player.getSword().damageIncrease() + ".");
                     } // end of if (player.hasSword())
-                    delay();            
+                    delay();
                 } // end of if (RANDOM.nextInt(100) < swordDropChance)
 
                 else if (RANDOM.nextInt(100) < armourDropChance)
@@ -262,7 +265,7 @@ public class TheDungeon
                         player.addArmour("leather");
                         System.out.println("\nThe " + villain.getName() + " dropped " + player.getArmour().name() + ".\nYour damage taken has now decreased by " + player.getArmour().damageBlocked() + ".");
                     } // end of if (player.hasArmour())
-                    delay(); 
+                    delay();
                 } // end of else if (RANDOM.nextInt(100) < armourDropChance)
 
                 else if (RANDOM.nextInt(100) < healthPotionDropChance)
@@ -270,7 +273,7 @@ public class TheDungeon
                     player.addPotions(1);
                     System.out.println("\nThe " + villain.getName() + " dropped a health potion.");
                     delay();
-                } // end of else if (RANDOM.nextInt(100) < healthPotionDropChance)  
+                } // end of else if (RANDOM.nextInt(100) < healthPotionDropChance)
             } // end of if(!ranAway)
         } // end of loop while (running)
     } // end of main(String[] argument)
@@ -296,7 +299,6 @@ public class TheDungeon
     {
         // Statistics
         System.out.println("\f# A " + villain.getName() + " appeared #");
-
         System.out.println("\n# You have " + player.health() + " HP #");
         System.out.println("# Enemy has " + villain.getHealth() + " HP #");
         System.out.println("# Potions left: " + player.getPotions() + " #");
@@ -309,7 +311,7 @@ public class TheDungeon
             System.out.println("\n# Sword type: " + player.getSword().name() + " | hitpoints: " + player.getSword().hitpoints() + "  #");
         } // end of if (player.hasSword())
 
-        // Armour 
+        // Armour
         if (player.hasArmour())
         {
             System.out.println("\n# Armour type: " + player.getArmour().name() + " | Armour hitpoints: " + player.getArmour().hitpoints() + "  #");
@@ -327,6 +329,7 @@ public class TheDungeon
         }
         catch (InterruptedException exception)
         {
+            clear();
             System.out.println("\fThe game experienced an interrupted exception.");
             System.out.println("The game state was not saved.");
             System.out.println("Please restart the game.");
@@ -334,4 +337,15 @@ public class TheDungeon
             System.exit(0);
         } // end of catch (InterruptedException)
     } // end of method delay()
+
+    /**
+     * This method clear the current screen
+     *
+     */
+    public static void clear()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    } // end of method clear()
+
 } // end of class TheDungeon

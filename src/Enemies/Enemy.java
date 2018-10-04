@@ -1,4 +1,4 @@
-package Ennemies;
+package Enemies;
 
 import java.util.Random;
 
@@ -12,6 +12,8 @@ public abstract class Enemy
 {
     /* class fields */
     /** An array of possible enemy types. */
+
+    // Enemies classes to add : Witch,Orc,Imp,Giant,Demon,Spider,Dragon,Clown,Bat,Slime,Undead
     public static final String[] ENEMY_NAMES = { "El Grande", "The Little", "Hector The", "Explosive", "Strange", "Big and Fat" };
 
     /** The maximum attack damage of this enemy. */
@@ -101,3 +103,4 @@ public abstract class Enemy
     } // end of method health()
 
 } // end of class Enemy
+

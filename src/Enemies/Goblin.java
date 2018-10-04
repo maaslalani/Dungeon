@@ -1,11 +1,11 @@
-package Ennemies;
+package Enemies;
 
-public class Zombie extends Enemy {
+public class Goblin extends Enemy {
 
-
-    public Zombie(){
+    public Goblin(){
         super();
     }
+
 
     @Override
     public int attack() {
@@ -14,6 +14,6 @@ public class Zombie extends Enemy {
 
     @Override
     public void takeDamage(int damage) {
-        setHealth(this.getHealth()-damage);
+
     }
 }
