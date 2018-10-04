@@ -42,6 +42,7 @@ public class Player
     private String name;
     private int potionsRemaining;
     private Sword sword;
+    private int invisibleCount;
 
     /**
      * Constructs a new Player.
@@ -248,7 +249,13 @@ public class Player
      */
     public void takeDamage(int damage)
     {
-        if (hasArmour)
+        if (invisibleCount > 0)
+        {
+            invisibleCount -= 1;
+            System.out.println("You are invisible, and you did not take any damage!");
+            System.out.println("INVISIBLE COUNT LEFT: " + invisibleCount);
+        }
+        else if (hasArmour)
         {
             /* Player has armour, use it to decrease the damage taken. */
             armour.useArmour();
@@ -343,6 +350,16 @@ public class Player
 
         hasArmour = true;
     } // end of method addArmour()
+
+ /**
+     * Allows the player to go invisible and not take damage for X turns
+     * 
+     * @param turns the # of turns player can stay invisible
+     */
+    public void goInvisible(int turns)
+    {
+        invisibleCount += turns;
+    }
 
     /**
      * Returns this player's data to be saved in text format.

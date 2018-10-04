@@ -18,17 +18,11 @@ import java.io.IOException;
  */
 public class TheDungeon
 {
-    /** The menu option for attacking. */
-    public static final int ATTACK = 1;
-
     /** The string which contains all acceptable afirmative answers to yes or no questions. Not case-sensitive. */
     public static final String CONFIRMATION = "yesyyupoksureof course";
 
     /** The delay used for display messages. */
     public static final long DELAY = 2000;
-
-    /** The menu option for exiting the game. */
-    public static final int EXIT = 5;
 
     /** The delay used for display messages. */
     public static final int MAXIMUM_GOLD_DROP = 30;
@@ -39,17 +33,24 @@ public class TheDungeon
     /** The random number generator of this game. */
     public static final Random RANDOM = new Random();
 
-    /** The menu option for running away. */
-    public static final int RUN = 3;
-
-    /** The menu option for visiting the store. */
-    public static final int VISIT_STORE = 4;
-
     /** The way of gathering input of this game. */
     public static final Scanner SCANNER = new Scanner(System.in);
 
+    /** The menu option for attacking. */
+    public static final int ATTACK = 1;
     /** The menu option for using a potion. */
     public static final int USE_POTION = 2;
+    /** The menu option for running away. */
+    public static final int RUN = 3;
+    /** The menu option for visiting the store. */
+    public static final int VISIT_STORE = 4;
+    /** The menu option for going invisible. */
+    public static final int GO_INVISIBLE = 5;
+    /** The menu option for exiting the game. */
+    public static final int EXIT = 6;
+
+    /** Count for how long you can go invisible */
+    public static final int INVISIBLE_COUNT = 3;
 
     /**
      * The dungeon game.
@@ -148,14 +149,11 @@ public class TheDungeon
                             TheDungeon.delay();
                             break;
                         } // end of if (player.health() > player.FULL_HEALTH - player.POTION_HEALING)
-<<<<<<< HEAD
 
                         player.usePotion();
 
                         System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
                         System.out.println("Current HP: " + player.health());
-
-=======
 
                         if (player.getPotions() < 1) {
                         	System.out.println("\nYou do not have potions to drink.");
@@ -167,7 +165,6 @@ public class TheDungeon
                         System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
                         System.out.println("Current HP: " + player.health());
 
->>>>>>> 4805dc0a18f282adb8abf2ffbe0de9a65dae497e
                         delay();
                         break;
 
@@ -198,6 +195,13 @@ public class TheDungeon
                         /* Print the store options. */
                         clear();
                         Store.printStore(player);
+                        break;
+
+                    case GO_INVISIBLE:
+                        clear();
+                        System.out.println("GO INVISIBLE FOR: " + INVISIBLE_COUNT + " turns.");
+                        player.goInvisible(INVISIBLE_COUNT);
+                        TheDungeon.delay();
                         break;
 
                     case EXIT:
@@ -293,7 +297,8 @@ public class TheDungeon
         System.out.println("2. Use potion.");
         System.out.println("3. Run!");
         System.out.println("4. Visit Store.");
-        System.out.println("5. Exit Game.");
+        System.out.println("5. Go Invisible");
+        System.out.println("6. Exit Game.");
 
         System.out.print("\nChoice? ");
     } // end of startBattle()
