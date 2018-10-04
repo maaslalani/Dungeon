@@ -151,7 +151,8 @@ public class TheDungeon
                         if (player.getPotions() < 1) {
                         	System.out.println("\nYou do not have potions to drink.");
                         	break;
-                        }
+                        } // end of if (player.getPotions() < 1)
+                        
                         player.usePotion();
                         
                         System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
