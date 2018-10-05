@@ -148,14 +148,14 @@ public class TheDungeon
                             TheDungeon.delay();
                             break;
                         } // end of if (player.health() > player.FULL_HEALTH - player.POTION_HEALING)
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
                         player.usePotion();
 
                         System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
                         System.out.println("Current HP: " + player.health());
 
-=======
+//=======
 
                         if (player.getPotions() < 1) {
                         	System.out.println("\nYou do not have potions to drink.");
@@ -167,7 +167,7 @@ public class TheDungeon
                         System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
                         System.out.println("Current HP: " + player.health());
 
->>>>>>> 4805dc0a18f282adb8abf2ffbe0de9a65dae497e
+//>>>>>>> 4805dc0a18f282adb8abf2ffbe0de9a65dae497e
                         delay();
                         break;
 
