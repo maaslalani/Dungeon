@@ -28,7 +28,9 @@ public class Enemy
       "Clown",
       "Bat",
       "Undead",
-      "Slime"
+      "Slime",
+      "Snake",
+      "Ghost"
     };
 
     /** The maximum attack damage of this enemy. */
