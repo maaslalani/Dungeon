@@ -12,23 +12,23 @@ public class Enemy
     /** An array of possible enemy types. */
 
     public static final String[] ENEMY_NAMES = {
-      "Zombie",
-      "Skeleton",
+      "Hellwalker",
+      "Darkbone",
       "Warrior",
-      "Goblin",
+      "Belum",
       "Werewolf",
       "Vampire",
-      "Witch",
-      "Orc",
+      "Rackaka",
+      "Titandog",
       "Imp",
       "Giant",
-      "Demon",
-      "Spider",
-      "Dragon",
-      "Clown",
-      "Bat",
-      "Undead",
-      "Slime"
+      "Severus",
+      "Krank",
+      "Gramel",
+      "Bloodmask",
+      "Wingnut",
+      "Dustcrawler",
+      "Blob"
     };
 
     /** The maximum attack damage of this enemy. */
