@@ -50,6 +50,9 @@ public class TheDungeon
 
     /** The menu option for using a potion. */
     public static final int USE_POTION = 2;
+    
+    /** The undefined menu option */
+    public static final int UNDEFINED = 6;
 
     /**
      * The dungeon game.
@@ -122,7 +125,7 @@ public class TheDungeon
                 }
                 catch (NumberFormatException exception)
                 {
-                    choice = RUN;
+                    choice = UNDEFINED;
                 } // end of catch (NumberFormatException exception)
 
                 switch (choice)
@@ -148,14 +151,11 @@ public class TheDungeon
                             TheDungeon.delay();
                             break;
                         } // end of if (player.health() > player.FULL_HEALTH - player.POTION_HEALING)
-<<<<<<< HEAD
 
                         player.usePotion();
 
                         System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
                         System.out.println("Current HP: " + player.health());
-
-=======
 
                         if (player.getPotions() < 1) {
                         	System.out.println("\nYou do not have potions to drink.");
@@ -167,11 +167,11 @@ public class TheDungeon
                         System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
                         System.out.println("Current HP: " + player.health());
 
->>>>>>> 4805dc0a18f282adb8abf2ffbe0de9a65dae497e
                         delay();
                         break;
 
                     case RUN:
+                        
                         /* Penalize the player by removing their coins or health */
                         if (player.getPouch().getCoins() > PENALTY_FOR_RUNNING)
                         {
@@ -212,6 +212,10 @@ public class TheDungeon
 
                         running = false;
                         return;
+                    case UNDEFINED:
+                        System.out.println("Please choose one of menu items");
+                        delay();
+                        break;
                 } // end of switch (choice)
 
                 if (player.health() <= 0)
