@@ -29,9 +29,13 @@ public class Enemy
       "Bat",
       "Undead",
       "Slime",
+      "Monster",
+      "Anaconda",
+      "Ape",
       "Snake",
       "Ghost"
     };
+
 
     /** The maximum attack damage of this enemy. */
     public static final int MAXIMUM_ATTACK_DAMAGE = 20;
