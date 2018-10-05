@@ -31,7 +31,9 @@ public class Enemy
       "Slime",
       "Monster",
       "Anaconda",
-      "Ape"
+      "Ape",
+      "Snake",
+      "Ghost"
     };
 
 
