@@ -2,15 +2,16 @@
 A text-based adventure game, coded _entirely_ in Java.
 
 ## Premise:
-You are trapped in a dungeon and there is _no_ way out. Enemies are spawining one after the other. It is your goal is to kill as many as you can, without dying yourself.
+You are trapped in a dungeon and there is _no_ way out. Enemies are spawning one after the other. It is your goal is to kill as many as you can, without dying yourself.
 
 ## Gameplay:
-Throughout the game you are given a certain number of options. Type the corresponding number as your choice to select that option. The following is a brief description of what each of the options accomplishes.  
+Throughout the game you are given a certain number of options. Type the corresponding number as your choice to select that option. The following is a brief description of what each of the options accomplish.  
 
 __1. Attack:__ You deal a _random_ amount of damage to the enemy, as it also deals damage to you.  
 __2. Use Potion:__ Drink a potion that restores your health by a _certain_ amount.  
 __3. Run Away:__ Flee from the enemy and spawn a new enemy.  
-__4. Exit:__ Quit the game with or without saving your progress.
+__4. Exit:__ Visit the store to buy new equipment for your journey.
+__5. Exit:__ Quit the game with or without saving your progress.
 
 ## Usage:
 ```bash
@@ -30,7 +31,7 @@ For a better playing experience use the BlueJ IDE and run the main method found 
 
 ## Features:
 * Enemies drop swords, armour, and health potions upon defeat.
-* Swords and armour come in different variety.
+* Swords and armour come in different varieties.
 * Ability to load and save state of the game.
 * Gold coins as currency.
 * Store to purchase various game items.
@@ -42,7 +43,7 @@ For a better playing experience use the BlueJ IDE and run the main method found 
 * Add more names to the enemy list.
 * Give enemies special abilities.
 * Give player special power-ups.
-* Keep track of highest enemies killed.
+* ~~Keep track of highest enemies killed.~~
 * ~~Encrypted data.~~
 * Implement a graphical user interface.
 
