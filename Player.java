@@ -1,5 +1,9 @@
 import java.util.Random;
 
+import armour.ARMOUR_TYPE;
+import armour.Armour;
+import armour.ArmourFactory;
+
 /**
  * The main character in this game.
  * 
@@ -36,7 +40,6 @@ public class Player
     private int attackDamage;
     private int enemiesKilled;
     private boolean hasSword;
-    private boolean hasArmour;
     private int health;
     private Pouch pouch;
     private String name;
@@ -50,12 +53,10 @@ public class Player
     {
         name = NO_NAME;
         hasSword = false;
-        hasArmour = false;
         health = FULL_HEALTH;
         potionsRemaining = DEFAULT_NUMBER_OF_POTIONS;
         enemiesKilled = 0;
         sword = new Sword("balloon");
-        armour = new Armour("clothes");
         pouch = new Pouch();
     } // end of constructor Player()
 
@@ -147,7 +148,7 @@ public class Player
      */
     public boolean hasArmour()
     {
-        return hasArmour;
+        return armour != null;
     } // end of method hasArmour()
 
     /* Mutators */
@@ -248,7 +249,7 @@ public class Player
      */
     public void takeDamage(int damage)
     {
-        if (hasArmour)
+        if (this.hasArmour())
         {
             /* Player has armour, use it to decrease the damage taken. */
             armour.useArmour();
@@ -275,7 +276,7 @@ public class Player
                 } // end of catch (InterruptedException exception)
 
                 /* The armour is broken, the player no longer has armour. */
-                hasArmour = false;
+                armour = null;
             } // end of if (armour.hitpoints() <= 0)
         }
         else
@@ -339,9 +340,8 @@ public class Player
     {
         if (type == null) return;
 
-        armour = new Armour(type);
+        armour = ArmourFactory.createArmour(type);
 
-        hasArmour = true;
     } // end of method addArmour()
 
     /**
@@ -352,7 +352,7 @@ public class Player
         return
         name + " " 
         + hasSword + " "
-        + hasArmour + " "
+        + hasArmour() + " "
         + enemiesKilled + " "
         + health + " "
         + potionsRemaining + " "
@@ -368,6 +368,5 @@ public class Player
         potionsRemaining = DEFAULT_NUMBER_OF_POTIONS;
         enemiesKilled = 0;
         hasSword = false;
-        hasArmour = false;
     } // end of method reset()
 } // end of class Player
