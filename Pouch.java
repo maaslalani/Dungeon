@@ -32,7 +32,9 @@ public class Pouch
      */
     public void addCoins(int coins)
     {
-        this.coins += coins;
+    	if(coins > 0) {
+    		this.coins += coins;
+    	}
     } // end of method addCoins(int coins)    
 
     /**
@@ -42,7 +44,12 @@ public class Pouch
      */
     public void removeCoins(int coins)
     {
-        this.coins -= coins;
+    	if(coins > 0) {
+    		this.coins -= coins;
+    		if(coins < 0) {
+    			coins = 0;
+    		}
+    	}
     } // end of method removeCoins(int coins)  
    
     /**
@@ -52,6 +59,8 @@ public class Pouch
      */
     public void setCoins(int coins)
     {
-        this.coins = coins;
+    	if(coins >= 0) {
+    		this.coins = coins;
+    	}
     } // end of method addCoins(int coins)
 } // end of class Pouch
