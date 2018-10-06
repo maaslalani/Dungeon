@@ -105,8 +105,8 @@ public class TheDungeon
         // Game loop
         while (running)
         {
-            // Main enemy
-            Enemy villain = new Enemy();
+            // Main enemy 
+            Enemy villain = new Enemy(player.getPouch());
 
             while (villain.health() > 0)
             {
@@ -122,7 +122,8 @@ public class TheDungeon
                 }
                 catch (NumberFormatException exception)
                 {
-                    choice = UNDEFINED;
+                    System.out.println("Invalid command, please try again.");
+                    continue;
                 } // end of catch (NumberFormatException exception)
 
                 switch (choice)
@@ -149,20 +150,18 @@ public class TheDungeon
                             break;
                         } // end of if (player.health() > player.FULL_HEALTH - player.POTION_HEALING)
 
-                        player.usePotion();
-
-                        System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
-                        System.out.println("Current HP: " + player.health());
-
-                        if (player.getPotions() < 1) {
-                        	System.out.println("\nYou do not have potions to drink.");
-                        	break;
-                        } // end of if (player.getPotions() < 1)
-
-                        player.usePotion();
-
-                        System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
-                        System.out.println("Current HP: " + player.health());
+                        if(player.getPotions() > 0)
+                        {
+                            player.usePotion();
+    
+                            System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
+                            System.out.println("Current HP: " + player.health());
+                        }
+                        else
+                        {
+                            System.out.println("You are out of potions.");
+                            System.out.println("Current HP: " + player.health());
+                        }
 
                         delay();
                         break;
