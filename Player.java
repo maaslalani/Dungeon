@@ -1,5 +1,8 @@
 import java.util.Random;
 
+import swords.Sword;
+import swords.SwordFactory;
+
 /**
  * The main character in this game.
  * 
@@ -26,7 +29,7 @@ public class Player
     public static final int FULL_HEALTH = 100;
 
     /** The maximum attack damage of this player. */
-    public static final int MAXIMUM_ATTACK_DAMAGE = 25;
+    public static final int BASE_ATTACK_DAMAGE = 25;
 
     /** The default name given to a player. */
     public static final String NO_NAME = "";
@@ -35,7 +38,6 @@ public class Player
     private Armour armour;
     private int attackDamage;
     private int enemiesKilled;
-    private boolean hasSword;
     private boolean hasArmour;
     private int health;
     private Pouch pouch;
@@ -49,12 +51,10 @@ public class Player
     public Player()
     {
         name = NO_NAME;
-        hasSword = false;
         hasArmour = false;
         health = FULL_HEALTH;
         potionsRemaining = DEFAULT_NUMBER_OF_POTIONS;
         enemiesKilled = 0;
-        sword = new Sword("balloon");
         armour = new Armour("clothes");
         pouch = new Pouch();
     } // end of constructor Player()
@@ -137,7 +137,7 @@ public class Player
      */
     public boolean hasSword()
     {
-        return hasSword;
+        return sword != null;
     } // end of method hasSword()
 
     /**
@@ -207,16 +207,19 @@ public class Player
      */
     public int attack()
     {
-        if (hasSword)
+        if (this.hasSword())
         {
             /* Player has a sword, use it to deal more damage. */
             sword.useSword();
 
+            int damage = RANDOM.nextInt(BASE_ATTACK_DAMAGE) + sword.getDamageIncrease();
+            
             /* Check the hitpoint status of the sword. */
-            if (sword.hitpoints() <= 0)
+            if (sword.getHitpoints() <= 0)
             {
                 /* Warn the user their sword has broken. */
-                System.out.println("\nYour " + sword.name() + " broke.");
+                System.out.println("\nYour " + sword.getName() + " broke.");
+                this.sword = null;
 
                 try
                 {
@@ -230,15 +233,14 @@ public class Player
                     System.exit(0);
                 } // end of catch (InterruptedException exception)
                 /* The sword is broken, the player no longer has a sword. */
-                hasSword = false;
             }
 
             /* Increase the base attack damage by the sword's additional damage. */
-            return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE) + sword.damageIncrease();
+            return damage;
         }
 
         /* Player does not have a sword, return the base attack damage. */
-        return RANDOM.nextInt(MAXIMUM_ATTACK_DAMAGE);
+        return RANDOM.nextInt(BASE_ATTACK_DAMAGE);
     } // end of method attack()
 
     /**
@@ -327,9 +329,8 @@ public class Player
     {
         if (type == null) return;
 
-        sword = new Sword(type);
+        sword = SwordFactory.createSword(type);
 
-        hasSword = true;
     } // end of method addSword()
 
     /**
@@ -351,7 +352,7 @@ public class Player
     {
         return
         name + " " 
-        + hasSword + " "
+        + this.hasSword() + " "
         + hasArmour + " "
         + enemiesKilled + " "
         + health + " "
@@ -367,7 +368,7 @@ public class Player
         health = FULL_HEALTH;
         potionsRemaining = DEFAULT_NUMBER_OF_POTIONS;
         enemiesKilled = 0;
-        hasSword = false;
+        sword = null;
         hasArmour = false;
     } // end of method reset()
 } // end of class Player
