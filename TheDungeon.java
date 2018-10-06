@@ -259,7 +259,7 @@ public class TheDungeon
                     else
                     {
                         player.addSword("");
-                        System.out.println("\nThe " + villain.name() + " dropped a " + player.getSword().name() + ".\nYour attack damage has now increased by " + player.getSword().damageIncrease() + ".");
+                        System.out.println("\nThe " + villain.name() + " dropped a " + player.getSword().getName() + ".\nYour attack damage has now increased by " + player.getSword().getDamageIncrease() + ".");
                     } // end of if (player.hasSword())
                     delay();
                 } // end of if (RANDOM.nextInt(100) < swordDropChance)
@@ -320,7 +320,7 @@ public class TheDungeon
         // Sword
         if (player.hasSword())
         {
-            System.out.println("\n# Sword type: " + player.getSword().name() + " | hitpoints: " + player.getSword().hitpoints() + "  #");
+            System.out.println("\n# Sword type: " + player.getSword().getName() + " | hitpoints: " + player.getSword().getHitpoints() + "  #");
         } // end of if (player.hasSword())
 
         // Armour
