@@ -1,4 +1,4 @@
-package armour;
+package armour; //imported
 
 public class ArmourFactory {
 
