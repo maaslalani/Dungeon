@@ -21,9 +21,6 @@ public class TheDungeon
     /** The menu option for attacking. */
     public static final int ATTACK = 1;
 
-    /** The string which contains all acceptable afirmative answers to yes or no questions. Not case-sensitive. */
-    public static final String CONFIRMATION = "yesyyupoksureof course";
-
     /** The delay used for display messages. */
     public static final long DELAY = 2000;
 
@@ -80,7 +77,7 @@ public class TheDungeon
         System.out.print("Would you like to load your previous game? ");
         String loadGameState = SCANNER.nextLine();
 
-        if (CONFIRMATION.contains(loadGameState))
+        if (CONFIRMATION.isConfirmation(loadGameState))
         {
             System.out.print("\nWhat is your name? ");
             String name = SCANNER.nextLine();
@@ -205,10 +202,10 @@ public class TheDungeon
                         System.out.println("\fExiting game...");
                         System.out.print("Would you like to save your progress? ");
 
-                        if (CONFIRMATION.contains(SCANNER.nextLine()))
+                        if (CONFIRMATION.isConfirmation(SCANNER.nextLine()))
                         {
                             State.saveState(player);
-                        } // end of if (CONFIRMATION.contains(SCANNER.nextLine()))
+                        } // end of if (CONFIRMATION.isConfirmation(SCANNER.nextLine()))
 
                         running = false;
                         return;
@@ -225,11 +222,11 @@ public class TheDungeon
                     System.out.print("Would you like to respawn? ");
                     String continueGame = SCANNER.nextLine();
 
-                    if (CONFIRMATION.contains(continueGame))
+                    if (CONFIRMATION.isConfirmation(continueGame))
                     {
                         running = true;
                         player.reset();
-                    } // end of if (input.equals("1"))
+                    } // end of if (Confirmation.isConfirmation(continueGame))
                     else
                     {
                         System.out.println("\nProgram terminated.");
