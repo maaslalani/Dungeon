@@ -14,7 +14,27 @@ public abstract class Enemy
     /** An array of possible enemy types. */
 
     // Enemies classes to add : Witch,Orc,Imp,Giant,Demon,Spider,Dragon,Clown,Bat,Slime,Undead
-    public static final String[] ENEMY_NAMES = { "Large", "Little", "Huge", "Explosive", "Strange", "Big and Fat" };
+    public static final String[] ENEMY_NAMES = {
+      "Zombie",
+      "Skeleton",
+      "Warrior",
+      "Goblin",
+      "Werewolf",
+      "Vampire",
+      "Witch",
+      "Orc",
+      "Imp",
+      "Giant",
+      "Demon",
+      "Spider",
+      "Dragon",
+      "Clown",
+      "Bat",
+      "Undead",
+      "Slime",
+      "Snake",
+      "Ghost"
+    };
 
     /** The maximum attack damage of this enemy. */
     public static final int MAXIMUM_ATTACK_DAMAGE = 20;
