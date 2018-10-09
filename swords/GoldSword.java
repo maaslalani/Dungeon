@@ -1,6 +1,6 @@
 package swords;
 
-public class GoldSword extends Sword{
+public class GoldSword extends Sword {
     /* class fields */
     /** The hitpoints of a wood sword. */
     private int hitpoints = 20;
@@ -9,5 +9,4 @@ public class GoldSword extends Sword{
     private int damageIncrease = 15;
     
     private String name = "gold sword";
-    
 }

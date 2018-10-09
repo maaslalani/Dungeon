@@ -1,6 +1,7 @@
 import java.util.Random;
 
 
+import swords.SWORD_TYPE;
 import swords.Sword;
 import swords.SwordFactory;
 
@@ -59,12 +60,12 @@ public class Player
     {
         name = NO_NAME;
         hasArmour = false;
-        armour = new Armour("clothes");
+        armour = null;
         hasSword = false;
         health = FULL_HEALTH;
         potionsRemaining = DEFAULT_NUMBER_OF_POTIONS;
         enemiesKilled = 0;
-        sword = new Sword("balloon");
+        sword = null;
         pouch = new Pouch();
     } // end of constructor Player()
 

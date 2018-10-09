@@ -14,8 +14,6 @@ public abstract class Armour
     private int hitpoints;
     private int damageBlocked;
 
-    
-
     /**
      * Returns the damageBlocked of this armour.
      *

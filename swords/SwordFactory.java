@@ -10,15 +10,15 @@ public class SwordFactory {
     public static Sword createSword(String type)
     {        
 
-        if(SWORD_TYPE.WOOD.getValue().equals(type)) {
+        if (SWORD_TYPE.WOOD.getValue().equals(type)) {
             return new WoodSword();
         }
 
-        if(SWORD_TYPE.METAL.getValue().equals(type)) {
+        if (SWORD_TYPE.METAL.getValue().equals(type)) {
             return new MetalSword();
         }
         
-        if(SWORD_TYPE.GOLD.getValue().equals(type)) {
+        if (SWORD_TYPE.GOLD.getValue().equals(type)) {
             return new GoldSword();
         }
 

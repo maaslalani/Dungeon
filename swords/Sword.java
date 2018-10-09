@@ -14,8 +14,6 @@ public abstract class Sword
     private int hitpoints;
     private String name;
 
-    
-
     /**
      * Returns the name of this sword. 
      * 

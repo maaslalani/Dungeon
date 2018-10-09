@@ -47,7 +47,7 @@ public class TheDungeon
 
     /** The menu option for using a potion. */
     public static final int USE_POTION = 2;
-    
+
     /** The undefined menu option */
     public static final int UNDEFINED = 6;
 
@@ -105,7 +105,7 @@ public class TheDungeon
         // Game loop
         while (running)
         {
-            // Main enemy 
+            // Main enemy
             Enemy villain = new Enemy(player.getPouch());
 
             while (villain.health() > 0)
@@ -153,7 +153,7 @@ public class TheDungeon
                         if(player.getPotions() > 0)
                         {
                             player.usePotion();
-    
+
                             System.out.println("\nYou drank the potion. Health restored by: " + Player.POTION_HEALING + " HP");
                             System.out.println("Current HP: " + player.health());
                         }
@@ -167,7 +167,7 @@ public class TheDungeon
                         break;
 
                     case RUN:
-                        
+
                         /* Penalize the player by removing their coins or health */
                         if (player.getPouch().getCoins() > PENALTY_FOR_RUNNING)
                         {
@@ -254,7 +254,7 @@ public class TheDungeon
                     } // end of if (player.hasSword())
                     else
                     {
-                        player.addSword("");
+                        player.addSword("metal");
                         System.out.println("\nThe " + villain.name() + " dropped a " + player.getSword().getName() + ".\nYour attack damage has now increased by " + player.getSword().getDamageIncrease() + ".");
                     } // end of if (player.hasSword())
                     delay();
@@ -268,7 +268,7 @@ public class TheDungeon
                     } // end of if (player.hasArmour())
                     else
                     {
-                        player.addArmour("leather");
+                        player.addArmour("iron");
                         System.out.println("\nThe " + villain.name() + " dropped " + player.getArmour().name() + ".\nYour damage taken has now decreased by " + player.getArmour().damageBlocked() + ".");
                     } // end of if (player.hasArmour())
                     delay();
