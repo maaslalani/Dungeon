@@ -10,7 +10,7 @@ Throughout the game you are given a certain number of options. Type the correspo
 __1. Attack:__ You deal a _random_ amount of damage to the enemy, as it also deals damage to you.  
 __2. Use Potion:__ Drink a potion that restores your health by a _certain_ amount.  
 __3. Run Away:__ Flee from the enemy and spawn a new enemy.  
-__4. Exit:__ Visit the store to buy new equipment for your journey.
+__4. Store:__ Visit the store to buy new equipment for your journey.  
 __5. Exit:__ Quit the game with or without saving your progress.
 
 ## Usage:
