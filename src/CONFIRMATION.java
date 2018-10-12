@@ -1,8 +1,7 @@
-
 public enum CONFIRMATION {
 
-  YES("yes"),
-  YUP("yup"),
+	YES("yes"),
+	YUP("yup"),
 	OK("ok"),
 	OKAY("okay"),
 	SURE("sure"),
@@ -21,8 +20,8 @@ public enum CONFIRMATION {
 
 	public static boolean isConfirmation(String value) {
 		for (CONFIRMATION confirmation : CONFIRMATION.values()) {
-      return confirmation.value.equalsIgnoreCase(value)
-    }
-  }
-
+			return confirmation.value.equalsIgnoreCase(value);
+		}
+		return false;
+	}
 }

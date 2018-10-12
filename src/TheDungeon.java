@@ -1,11 +1,5 @@
 import java.util.Scanner;
 import java.util.Random;
-import java.util.Arrays;
-
-import java.io.PrintWriter;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

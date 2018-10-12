@@ -1,6 +1,5 @@
 import java.util.Random;
 
-
 import swords.SWORD_TYPE;
 import swords.Sword;
 import swords.SwordFactory;
@@ -9,10 +8,9 @@ import armour.ARMOUR_TYPE;
 import armour.Armour;
 import armour.ArmourFactory;
 
-
 /**
  * The main character in this game.
- * 
+ *
  * @author Maas Lalani
  * @version 1.2 2016-11-12
  */
@@ -24,7 +22,7 @@ public class Player
     public static final int DEFAULT_NUMBER_OF_POTIONS = 3;
 
     /** The delay used for display messages to allow for readability. */
-    public static final long DELAY = 1000;   
+    public static final long DELAY = 1000;
 
     /** Random number generator for this player. */
     public static Random RANDOM = new Random();
@@ -72,7 +70,7 @@ public class Player
     /* Accessors */
     /**
      * Returns the name of this player.
-     * 
+     *
      * @return the name of this player
      */
     public String getName()
@@ -82,7 +80,7 @@ public class Player
 
     /**
      * Returns the health of this player.
-     * 
+     *
      * @return the health of this player
      */
     public int health()
@@ -92,7 +90,7 @@ public class Player
 
     /**
      * Returns the enemies killed of this player.
-     * 
+     *
      * @return enemiesKilled
      */
     public int enemiesKilled()
@@ -102,7 +100,7 @@ public class Player
 
     /**
      * Returns the number of potions this player has.
-     * 
+     *
      * @return the number of potions this player has
      */
     public int getPotions()
@@ -112,7 +110,7 @@ public class Player
 
     /**
      * Returns the sword of this player.
-     * 
+     *
      * @return the sword of this player
      */
     public Sword getSword()
@@ -122,17 +120,17 @@ public class Player
 
     /**
      * Returns the armour of this player.
-     * 
+     *
      * @return the armour of this player
      */
     public Armour getArmour()
     {
         return armour;
     } // end of method getSword()
-    
+
     /**
      * Returns the pouch of this player.
-     * 
+     *
      * @return the pouch of this player
      */
     public Pouch getPouch()
@@ -142,7 +140,7 @@ public class Player
 
     /**
      * Returns whether this player has a sword.
-     * 
+     *
      * @return <code>true</code> if this player has a sword, otherwise <code>false</code>
      */
     public boolean hasSword()
@@ -152,7 +150,7 @@ public class Player
 
     /**
      * Returns whether this player has armour.
-     * 
+     *
      * @return <code>true</code> if this player has armour, otherwise <code>false</code>
      */
     public boolean hasArmour()
@@ -163,17 +161,17 @@ public class Player
     /* Mutators */
     /**
      * Sets the number of enemies killed by this player. Used for importing saved data.
-     * 
+     *
      * @param enemiesKilled the number of enemies killed by this player
      */
     public void setEnemiesKilled(int enemiesKilled)
     {
         this.enemiesKilled = enemiesKilled;
-    } // end of method setName(String name)    
+    } // end of method setName(String name)
 
     /**
      * Sets the number of health points of this player.
-     * 
+     *
      * @param healthPoints the number of health points to give this player
      */
     public void setHealth(int healthPoints)
@@ -186,17 +184,17 @@ public class Player
 
     /**
      * Sets the name of this player.
-     * 
+     *
      * @param name the new name of this player
      */
     public void setName(String name)
     {
         this.name = name;
-    } // end of method setName(String name)   
+    } // end of method setName(String name)
 
     /**
      * Sets the  of this player.
-     * 
+     *
      * @param name the new name of this player
      */
     public void setNumberOfPotions(int potions)
@@ -205,14 +203,14 @@ public class Player
         {
             potionsRemaining = potions;
         } // end of if (potions >= 0)
-    } // end of method setName(String name)    
+    } // end of method setName(String name)
 
     /* Utility methods */
 
     /* Methods that affect the health of this player */
     /**
      * Returns damage dealt by this player, accounting for their sword.
-     * 
+     *
      * @return the damage done by this player
      */
     public int attack()
@@ -223,7 +221,7 @@ public class Player
             sword.useSword();
 
             int damage = RANDOM.nextInt(BASE_ATTACK_DAMAGE) + sword.getDamageIncrease();
-            
+
             /* Check the hitpoint status of the sword. */
             if (sword.getHitpoints() <= 0)
             {
@@ -255,7 +253,7 @@ public class Player
 
     /**
      * Reduce the HP of this player by a specified amount.
-     * 
+     *
      * @param damage the amount of damage to deal to this player
      */
     public void takeDamage(int damage)
@@ -315,7 +313,7 @@ public class Player
 
     /**
      * Increases the amount of potions this player has by a specified amount.
-     * 
+     *
      * @param potions the number of potions to add to this player
      */
     public void addPotions(int potions)
@@ -360,7 +358,7 @@ public class Player
     public String getData()
     {
         return
-        name + " " 
+        name + " "
         + this.hasSword() + " "
         + hasSword + " "
         + hasArmour() + " "
