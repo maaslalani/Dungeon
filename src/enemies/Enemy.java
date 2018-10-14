@@ -21,7 +21,6 @@ public abstract class Enemy
         // TIER 2
         "Ghost",
         "Goblin",
-        "Orc",
         "Skeleton",
         "Werewolf",
         // TIER 3
@@ -35,7 +34,10 @@ public abstract class Enemy
     };
 
     /** The maximum attack damage of this enemy. */
-    public static final int MAXIMUM_ATTACK_DAMAGE = 20;
+    public static final int TIER1_MAXIMUM_ATTACK_DAMAGE = 2;
+    public static final int TIER2_MAXIMUM_ATTACK_DAMAGE = 8;
+    public static final int TIER3_MAXIMUM_ATTACK_DAMAGE = 14;
+    public static final int TIER4_MAXIMUM_ATTACK_DAMAGE = 20;
 
     /** The maximum health of this enemy. */
     public static final int TIER1_MAXIMUM_HEALTH = 25;
@@ -63,8 +65,7 @@ public abstract class Enemy
     public Enemy()
     {
         /* Fetch a random name from the list of enemies. */
-        type = this.getClass().getSimpleName();
-        name = ENEMY_NAMES[RANDOM.nextInt(ENEMY_NAMES.length)] + " " + this.type;
+        name = ENEMY_NAMES[RANDOM.nextInt(ENEMY_NAMES.length)];
 
     } // end of constructor Enemy()
 
@@ -74,10 +75,6 @@ public abstract class Enemy
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     /**
