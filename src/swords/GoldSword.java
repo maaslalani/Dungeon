@@ -1,4 +1,4 @@
-package swords;
+package src.swords;
 
 public class GoldSword extends Sword {
     /* class fields */
@@ -7,6 +7,6 @@ public class GoldSword extends Sword {
 
     /** The damage increase of a wood sword. */
     private int damageIncrease = 15;
-    
+
     private String name = "gold sword";
 }

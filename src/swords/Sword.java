@@ -1,8 +1,8 @@
-package swords;
+package src.swords;
 
 /**
  * A weapon which inflicts an increased number of damage to an enemy.
- * 
+ *
  * @author Maas Lalani
  * @version 1.2 2016-11-14
  */
@@ -15,8 +15,8 @@ public abstract class Sword
     private String name;
 
     /**
-     * Returns the name of this sword. 
-     * 
+     * Returns the name of this sword.
+     *
      * @return name
      */
     public String getName()
@@ -26,7 +26,7 @@ public abstract class Sword
 
     /**
      * Returns the hitpoints of this sword.
-     * 
+     *
      * @return hitpoints
      */
     public int getHitpoints()
@@ -36,7 +36,7 @@ public abstract class Sword
 
     /**
      * Returns the damageIncrease of this sword.
-     * 
+     *
      * @return damageIncrease
      */
     public int getDamageIncrease()
@@ -46,7 +46,7 @@ public abstract class Sword
 
     /**
      * Changes the name of this sword to the specified name.
-     * 
+     *
      * @param name the name of this sword
      */
     public void setName(String name)
@@ -64,7 +64,7 @@ public abstract class Sword
 
     /**
      * Adds hitpoints to sword, repairing the sword.
-     * 
+     *
      * @param hitpointsToRepair how many hitpoints the sword will be repaired by
      */
     public void repairSword(int hitpointsToRepair)

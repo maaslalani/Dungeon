@@ -1,3 +1,5 @@
+package src;
+
 /**
  * Encrypts data to be stored in a text file.
  *
