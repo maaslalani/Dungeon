@@ -1,12 +1,14 @@
+package src.player;
+
 import java.util.Random;
 
-import swords.SWORD_TYPE;
-import swords.Sword;
-import swords.SwordFactory;
+import src.swords.SWORD_TYPE;
+import src.swords.Sword;
+import src.swords.SwordFactory;
 
-import armour.ARMOUR_TYPE;
-import armour.Armour;
-import armour.ArmourFactory;
+import src.armour.ARMOUR_TYPE;
+import src.armour.Armour;
+import src.armour.ArmourFactory;
 
 /**
  * The main character in this game.

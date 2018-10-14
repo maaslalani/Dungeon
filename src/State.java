@@ -2,6 +2,8 @@ package src;
 
 import java.util.Scanner;
 
+import src.player.Player;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.File;

@@ -2,6 +2,8 @@ package src;
 
 import java.util.Scanner;
 
+import src.player.Player;
+
 import java.util.InputMismatchException;
 
 /**
