@@ -1,4 +1,8 @@
+package src;
+
 import java.util.Scanner;
+
+import src.player.Player;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,7 +14,7 @@ import java.io.IOException;
 
 /**
  * The state of this specified dungeon game.
- * 
+ *
  * @author Maas Lalani
  * @version 1.0 2016-11-11
  */
@@ -20,7 +24,7 @@ public class State
 
     /**
      * Saves the state of this player to a text file.
-     * 
+     *
      * @param player the player whose state should be saved
      */
     public static void saveState(Player player)
@@ -47,7 +51,7 @@ public class State
 
             /* Save encrypted player data to file. */
             String encrypted = Cipher.encrypt(player.getData());
-            
+
             writer.println(encrypted);
 
             writer.close();
@@ -70,7 +74,7 @@ public class State
 
         /* Load saved decrypted player data */
         String[] data = Cipher.decrypt(reader.readLine()).split(" ");
-        
+
         reader.close();
 
         /* Extract the data into local variables from the string array */
@@ -99,7 +103,7 @@ public class State
 
         /* Set the number of potions of this player. */
         player.setNumberOfPotions(numberOfPotions);
-        
+
         /* Set the coins of this player. */
         player.getPouch().setCoins(coins);
     } // end of method saveState(State state)

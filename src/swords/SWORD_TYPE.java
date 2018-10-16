@@ -1,22 +1,22 @@
-package swords;
+package src.swords;
 
 public enum SWORD_TYPE {
 	WOOD("wood"),
 	METAL("metal"),
 	GOLD("gold");
-	
+
 	private String value;
-	
+
 	SWORD_TYPE(String value) {
 		this.value = value;
 	}
-	
+
 	public String getValue() {
 		return value;
 	}
-	
+
 	public static SWORD_TYPE getSwordType(String value) {
-		
+
 		for(SWORD_TYPE sword : SWORD_TYPE.values()) {
 			if(sword.value.equalsIgnoreCase(value)) {
 				return sword;
@@ -24,5 +24,5 @@ public enum SWORD_TYPE {
 		}
 		return null;
 	}
-	
+
 }

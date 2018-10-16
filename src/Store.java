@@ -1,9 +1,14 @@
+package src;
+
 import java.util.Scanner;
+
+import src.player.Player;
+
 import java.util.InputMismatchException;
 
 /**
  * The store where the player can buy items.
- * 
+ *
  * @author Maas Lalani
  * @version 1.0 2016-11-14
  */
@@ -18,7 +23,7 @@ public class Store
     public static void printStore(Player player)
     {
         System.out.println("\fWelcome to the store.\n");
-        
+
         System.out.println("You have " + player.getPouch().getCoins() + " coins.\n");
 
         for (int i = 0; i < ITEM.length; i++)
@@ -40,7 +45,7 @@ public class Store
         try
         {
             itemIndex = scanner.nextInt() - 1;
-            
+
             if (itemIndex < 0 || itemIndex >= ITEM.length) return;
         }
         catch (InputMismatchException exception)
@@ -61,14 +66,14 @@ public class Store
         {
             System.out.println("\nYou cannot afford " + ITEM[itemIndex] + ". Please purchase an afforable item.");
             TheDungeon.delay();
-            
+
             /* Let the user try again. */
             printStore(player);
-            
+
             /* Return so that the item is not purchased later. */
             return;
         } // end of if (player.getPouch().getCoins() > PRICE[itemIndex])
-        
+
         switch (itemIndex)
         {
             /* Did player buy a sword? */
@@ -86,13 +91,13 @@ public class Store
                 player.addPotions(1);
                 break;
         } // end of switch (itemIndex)
-        
+
         /* Pay for the item that was bought */
         player.getPouch().removeCoins(PRICE[itemIndex]);
-        
+
         /* Display the item purchased and price. */
         System.out.println("\nYou purchased: " + ITEM[itemIndex] + ", for " + PRICE[itemIndex] + " coins");
         TheDungeon.delay();
-        
+
     } // end of method buyItem(Player player, int itemIndex)
 } // end of class Store

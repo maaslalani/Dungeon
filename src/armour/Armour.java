@@ -1,8 +1,8 @@
-package armour;
+package src.armour;
 
 /**
  * Blocks a set number of damage of an enemy's attack.
- * 
+ *
  * @author Maas Lalani
  * @version 1.2 2016-11-14
  */
@@ -26,7 +26,7 @@ public abstract class Armour
 
     /**
      * Returns the hitpoints left on this armour
-     * 
+     *
      * @return hitpoints
      */
     public int hitpoints()
@@ -36,7 +36,7 @@ public abstract class Armour
 
     /**
      * Returns the name of this armour.
-     * 
+     *
      * @return name
      */
     public String name()
@@ -46,7 +46,7 @@ public abstract class Armour
 
     /**
      * Changes the name of this armour to the specified name.
-     * 
+     *
      * @param name the name of this armour
      */
     public void setName(String name)
@@ -64,7 +64,7 @@ public abstract class Armour
 
     /**
      * Adds hitpoints to armour, repairing the armour.
-     * 
+     *
      * @param hitpointsToRepair how many hitpoints the armour will be repaired by
      */
     public void repairArmour(int hitpointsToRepair)

@@ -1,6 +1,8 @@
+package src.player;
+
 /**
  * Stores the gold coins in the pouch of the player.
- * 
+ *
  * @author Maas Lalani
  * @version 1.0 2016-11-14
  */
@@ -27,7 +29,7 @@ public class Pouch
 
     /**
      * Adds coins to this pouch.
-     * 
+     *
      * @param coins the number of coins to add to this pouch
      */
     public void addCoins(int coins)
@@ -35,11 +37,11 @@ public class Pouch
     	if(coins > 0) {
     		this.coins += coins;
     	}
-    } // end of method addCoins(int coins)    
+    } // end of method addCoins(int coins)
 
     /**
      * Removes coins from this pouch.
-     * 
+     *
      * @param coins the number of coins to remove from this pouch
      */
     public void removeCoins(int coins)
@@ -50,11 +52,11 @@ public class Pouch
     			coins = 0;
     		}
     	}
-    } // end of method removeCoins(int coins)  
-   
+    } // end of method removeCoins(int coins)
+
     /**
      * Sets the coins of this pouch.
-     * 
+     *
      * @param coins the number of coins in this pouch
      */
     public void setCoins(int coins)

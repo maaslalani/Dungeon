@@ -1,8 +1,8 @@
-import java.util.Random;
+package src;
 
 /**
  * Encrypts data to be stored in a text file.
- * 
+ *
  * @author Maas Lalani
  * @version 1.0 2016-11-15
  */
