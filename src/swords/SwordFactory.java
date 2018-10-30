@@ -15,6 +15,7 @@ public class SwordFactory {
         }
 
         if (SWORD_TYPE.METAL.getValue().equals(type)) {
+        	// System.out.println("The Sword Factory made a metal sword.");
             return new MetalSword();
         }
 

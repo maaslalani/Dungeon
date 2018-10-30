@@ -10,13 +10,17 @@ public class ArmourFactory {
     public static Armour createArmour(String type)
     {
 
-        if(type == null || ARMOUR_TYPE.LEATHER.getValue().equals(type)) {
-            return new LeatherArmour();
-        }
+    if(type == null || ARMOUR_TYPE.LEATHER.getValue().equals(type))
+    {
+      // System.out.println("The Armour Factory made leather armour.");
+      return new LeatherArmour();
+    }
 
-        if(ARMOUR_TYPE.IRON.getValue().equals(type)) {
-            return new IronArmour();
-        }
+    if(ARMOUR_TYPE.IRON.getValue().equals(type))
+    {
+      // System.out.println("The Armour Factory made iron armour.");
+      return new IronArmour();
+    }
 
         if(ARMOUR_TYPE.GOLD.getValue().equals(type)) {
             return new GoldArmour();

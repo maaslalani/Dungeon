@@ -8,11 +8,20 @@ package src.swords;
  */
 public abstract class Sword
 {
-
     /* instance fields */
-    private int damageIncrease;
-    private int hitpoints;
-    private String name;
+    /* class fields */
+    /** The hitpoints of a sword. */
+    protected int hitpoints;
+    
+    /** The damage increase of a sword. */
+    protected int damageIncrease;
+    
+    protected String name;
+    
+  public Sword()
+  {
+	  
+  }
 
     /**
      * Returns the name of this sword.

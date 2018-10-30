@@ -10,9 +10,14 @@ public abstract class Armour
 {
 
     /* instance fields */
-    private String name;
-    private int hitpoints;
-    private int damageBlocked;
+    protected String name;
+    protected int hitpoints;
+    protected int damageBlocked;
+    
+    public Armour()
+    {
+    	
+    }
 
     /**
      * Returns the damageBlocked of this armour.
